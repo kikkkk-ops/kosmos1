@@ -1,0 +1,1114 @@
+/* Основни стилове */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #0a0e17;
+    color: #e0e0e0;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Звезден фон */
+.stars-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-color: #0a0e17;
+    overflow: hidden;
+}
+
+.star-bg {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    animation: twinkle linear infinite;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.2; }
+    50% { opacity: 1; }
+    100% { opacity: 0.2; }
+}
+
+/* Заглавие и навигация */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: rgba(10, 14, 23, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 1rem;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #64b5f6;
+}
+
+.burger {
+    display: none;
+    cursor: pointer;
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #e0e0e0;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Основно съдържание */
+main {
+    padding: 2rem 5%;
+}
+
+section {
+    margin-bottom: 5rem;
+    padding: 2rem;
+    background-color: rgba(15, 20, 30, 0.7);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, #64b5f6, #1e88e5);
+}
+
+.section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+    color: #b0bec5;
+}
+
+/* Секция Начало */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80vh;
+    padding: 3rem;
+}
+
+.hero-content {
+    flex: 1;
+    padding-right: 2rem;
+}
+
+.hero-content h2 {
+    font-size: 3rem;
+    text-align: left;
+    padding-bottom: 1.5rem;
+}
+
+.hero-content h2::after {
+    left: 0;
+    transform: none;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #b0bec5;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(90deg, #1e88e5, #64b5f6);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background: linear-gradient(90deg, #64b5f6, #1e88e5);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(100, 181, 246, 0.4);
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star-animation {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #ffcc00, transparent 70%);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 50px #ffcc00, 0 0 100px #ffcc00;
+    animation: pulse 3s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    100% { transform: scale(1.1); opacity: 1; }
+}
+
+/* Секция Видове звезди */
+.star-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.star-card {
+    background-color: rgba(25, 30, 40, 0.8);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.star-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.star-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(100, 181, 246, 0.1), rgba(30, 136, 229, 0.1));
+    z-index: -1;
+}
+
+.star {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    position: relative;
+}
+
+.main-sequence-star {
+    background: radial-gradient(circle, #ffcc00, #ff9900);
+    box-shadow: 0 0 30px #ffcc00, 0 0 60px rgba(255, 204, 0, 0.5);
+    animation: pulse 3s infinite alternate;
+}
+
+.red-giant-star {
+    background: radial-gradient(circle, #ff6347, #8b0000);
+    box-shadow: 0 0 30px #ff6347, 0 0 60px rgba(255, 99, 71, 0.5);
+    animation: pulse 4s infinite alternate;
+}
+
+.white-dwarf-star {
+    background: radial-gradient(circle, #f0f8ff, #b0c4de);
+    box-shadow: 0 0 30px #f0f8ff, 0 0 60px rgba(240, 248, 255, 0.5);
+    animation: pulse 2s infinite alternate;
+}
+
+.neutron-star {
+    background: radial-gradient(circle, #00ffff, #00bfff);
+    box-shadow: 0 0 30px #00ffff, 0 0 60px rgba(0, 255, 255, 0.5);
+    animation: pulse 1s infinite alternate;
+}
+
+.supergiant-star {
+    background: radial-gradient(circle, #4169e1, #0000cd);
+    box-shadow: 0 0 40px #4169e1, 0 0 80px rgba(65, 105, 225, 0.5);
+    animation: pulse 5s infinite alternate;
+}
+
+.black-hole-star {
+    background: radial-gradient(circle, #000000, #000000);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.black-hole-star::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: #000;
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(100, 181, 246, 0.8);
+    z-index: 1;
+}
+
+.black-hole-star::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 30%, rgba(30, 136, 229, 0.2) 70%);
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.star-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.star-card p {
+    color: #b0bec5;
+    font-size: 1rem;
+}
+
+/* Секция Звездна карта */
+.star-map {
+    position: relative;
+}
+
+.star-map-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.select {
+    padding: 0.8rem 1.5rem;
+    background-color: rgba(25, 30, 40, 0.8);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.star-canvas {
+    width: 100%;
+    height: 500px;
+    background-color: rgba(10, 14, 23, 0.8);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 2rem;
+}
+
+.star-map-legend {
+    background-color: rgba(25, 30, 40, 0.8);
+    padding: 1rem;
+    border-radius: 5px;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.star-map-legend h4 {
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.star-map-legend ul {
+    list-style: none;
+}
+
+.star-map-legend li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+/* Секция Класификация на звездите */
+.classification-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.hr-diagram {
+    background-color: rgba(25, 30, 40, 0.8);
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.hr-diagram h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.hr-diagram-container {
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+#hr-diagram-canvas {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(10, 14, 23, 0.8);
+    border-radius: 5px;
+}
+
+.classification-table {
+    background-color: rgba(25, 30, 40, 0.8);
+    padding: 1.5rem;
+    border-radius: 10px;
+    overflow-x: auto;
+}
+
+.classification-table h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    padding: 0.8rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+    background-color: rgba(30, 136, 229, 0.2);
+    color: #fff;
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: rgba(30, 136, 229, 0.1);
+}
+
+.star-color {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+/* Секция Жизнен цикъл */
+.lifecycle-container {
+    margin-top: 3rem;
+}
+
+.lifecycle-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+}
+
+.lifecycle-stage {
+    background-color: rgba(25, 30, 40, 0.8);
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    width: 250px;
+    transition: all 0.3s ease;
+}
+
+.lifecycle-stage:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.stage-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+}
+
+.nebula-image {
+    background: radial-gradient(circle, #9370db, #4b0082);
+    box-shadow: 0 0 20px #9370db;
+}
+
+.protostar-image {
+    background: radial-gradient(circle, #ff8c00, #8b4513);
+    box-shadow: 0 0 20px #ff8c00;
+}
+
+.main-sequence-image {
+    background: radial-gradient(circle, #ffcc00, #ff9900);
+    box-shadow: 0 0 20px #ffcc00;
+}
+
+.red-giant-image {
+    background: radial-gradient(circle, #ff6347, #8b0000);
+    box-shadow: 0 0 20px #ff6347;
+}
+
+.planetary-nebula-image {
+    background: radial-gradient(circle, #00fa9a, #008080);
+    box-shadow: 0 0 20px #00fa9a;
+}
+
+.white-dwarf-image {
+    background: radial-gradient(circle, #f0f8ff, #b0c4de);
+    box-shadow: 0 0 20px #f0f8ff;
+}
+
+.red-supergiant-image {
+    background: radial-gradient(circle, #ff4500, #8b0000);
+    box-shadow: 0 0 20px #ff4500;
+}
+
+.supernova-image {
+    background: radial-gradient(circle, #ffd700, #ff4500);
+    box-shadow: 0 0 30px #ffd700;
+    animation: explode 3s infinite alternate;
+}
+
+@keyframes explode {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+.neutron-star-image {
+    background: radial-gradient(circle, #00ffff, #00bfff);
+    box-shadow: 0 0 20px #00ffff;
+}
+
+.black-hole-image {
+    background: #000;
+    box-shadow: 0 0 20px rgba(100, 181, 246, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.black-hole-image::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    background-color: #000;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.black-hole-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 30%, rgba(30, 136, 229, 0.2) 70%);
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+}
+
+.lifecycle-stage h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.lifecycle-stage p {
+    color: #b0bec5;
+    font-size: 0.9rem;
+}
+
+.lifecycle-arrow {
+    width: 3px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.lifecycle-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(255, 255, 255, 0.3);
+}
+
+.lifecycle-split {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+}
+
+.lifecycle-path {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 1rem;
+}
+
+.lifecycle-path h4 {
+    color: #64b5f6;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* Секция Интересни факти */
+.facts-carousel {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(25, 30, 40, 0.8);
+    border-radius: 10px;
+}
+
+.fact-card {
+    display: none;
+    padding: 1rem;
+    text-align: center;
+}
+
+.fact-card.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fact-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.fact-card p {
+    color: #b0bec5;
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Секция Тест */
+.quiz-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: rgba(25, 30, 40, 0.8);
+    border-radius: 10px;
+    text-align: center;
+}
+
+#quiz-start h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+#question-container {
+    margin-bottom: 2rem;
+}
+
+#question-container h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+#options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.option {
+    padding: 1rem;
+    background-color: rgba(30, 136, 229, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option:hover {
+    background-color: rgba(30, 136, 229, 0.2);
+}
+
+.option.selected {
+    background-color: rgba(30, 136, 229, 0.3);
+    border-color: #64b5f6;
+}
+
+.option.correct {
+    background-color: rgba(76, 175, 80, 0.3);
+    border-color: #4caf50;
+}
+
+.option.incorrect {
+    background-color: rgba(244, 67, 54, 0.3);
+    border-color: #f44336;
+}
+
+#score-display {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+#result-details {
+    margin-bottom: 2rem;
+}
+
+/* Футър */
+footer {
+    background-color: rgba(10, 14, 23, 0.9);
+    padding: 3rem 5% 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-logo img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+.footer-logo h3 {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.footer-links h4, .footer-resources h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.footer-links ul, .footer-resources ul {
+    list-style: none;
+}
+
+.footer-links li, .footer-resources li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a, .footer-resources a {
+    color: #b0bec5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover, .footer-resources a:hover {
+    color: #64b5f6;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom p {
+    color: #b0bec5;
+    font-size: 0.9rem;
+}
+
+/* Модален прозорец */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background-color: #0f141e;
+    margin: 5% auto;
+    padding: 2rem;
+    width: 80%;
+    max-width: 900px;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: #64b5f6;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#modal-image {
+    margin-right: 2rem;
+}
+
+#modal-title {
+    font-size: 2rem;
+    color: #fff;
+    text-align: left;
+}
+
+.modal-body p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #b0bec5;
+}
+
+#modal-characteristics h4 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+#modal-characteristics ul {
+    list-style-type: disc;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+#modal-characteristics li {
+    margin-bottom: 0.5rem;
+    color: #b0bec5;
+}
+
+/* Адаптивен дизайн */
+@media screen and (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .hero-content {
+        padding-right: 0;
+        margin-bottom: 3rem;
+    }
+    
+    .hero-content h2 {
+        text-align: center;
+    }
+    
+    .hero-content h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .star-cards {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .lifecycle-split {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .lifecycle-path {
+        margin: 1rem 0;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    header {
+        padding: 1rem 3%;
+    }
+    
+    .nav-links {
+        position: absolute;
+        right: 0;
+        top: 8vh;
+        height: 92vh;
+        background-color: rgba(10, 14, 23, 0.95);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        z-index: 100;
+    }
+    
+    .nav-links li {
+        opacity: 0;
+        margin-left: 0;
+    }
+    
+    .burger {
+        display: block;
+    }
+    
+    .nav-active {
+        transform: translateX(0%);
+    }
+    
+    @keyframes navLinkFade {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+    
+    .toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .toggle .line2 {
+        opacity: 0;
+    }
+    
+    .toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+    
+    main {
+        padding: 1rem 3%;
+    }
+    
+    section {
+        padding: 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    .hero-content h2 {
+        font-size: 2.5rem;
+    }
+    
+    .star-animation {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .star-canvas {
+        height: 400px;
+    }
+    
+    .modal-content {
+        width: 90%;
+        padding: 1.5rem;
+    }
+    
+    .modal-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    #modal-image {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    #modal-title {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+    
+    .logo img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .nav-links {
+        width: 70%;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .star-animation {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .star-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .star-canvas {
+        height: 300px;
+    }
+    
+    .star-map-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .lifecycle-stage {
+        width: 100%;
+    }
+    
+    .modal-content {
+        padding: 1rem;
+    }
+}

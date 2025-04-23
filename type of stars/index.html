@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Звезден Атлас - Интерактивен сайт за видовете звезди</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+    <div class="stars-bg"></div>
+    
+    <header>
+        <div class="logo">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTUwIDVMNjEgMjVINDAgTDUwIDVNMjUgMzBMNDAgNDVIMTAgTDI1IDMwTTc1IDMwTDkwIDQ1SDYwIEw3NSAzME01MCA1MEw2NSA3MEgzNSBMNTAgNTBNMjAgNzVMNDAgOTVIMCBMMjAgNzVNODAgNzVMMTAwIDk1SDYwIEw4MCA3NSI+PC9wYXRoPjwvc3ZnPg==" alt="Звезден Атлас Лого">
+            <h1>Звезден Атлас</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Начало</a></li>
+                <li><a href="#star-types">Видове звезди</a></li>
+                <li><a href="#star-classification">Класификация</a></li>
+                <li><a href="#star-lifecycle">Жизнен цикъл</a></li>
+                <li><a href="#interesting-facts">Интересни факти</a></li>
+                <li><a href="#quiz">Тест</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h2>Добре дошли в света на звездите</h2>
+                <p>Открийте удивителния свят на звездите - от раждането им в мъглявини до драматичната им смърт като свръхнови или черни дупки. Нашият интерактивен сайт ви предлага подробна информация за различните видове звезди, техните характеристики и жизнени цикли.</p>
+                <a href="#star-types" class="btn">Започнете пътешествието</a>
+            </div>
+            <div class="hero-image">
+                <div class="star-animation"></div>
+            </div>
+        </section>
+        
+        <section id="star-types" class="star-types">
+            <h2>Видове звезди</h2>
+            <p class="section-intro">Звездите се различават по маса, размер, температура, яркост и възраст. Тези характеристики определят техния цвят, продължителност на живота и крайна съдба. Разгледайте основните видове звезди и научете повече за техните уникални свойства.</p>
+            
+            <div class="star-cards">
+                <div class="star-card" data-star="main-sequence">
+                    <div class="star main-sequence-star"></div>
+                    <h3>Звезди от Главната Последователност</h3>
+                    <p>Най-често срещаният тип звезди, включително нашето Слънце. Те са в стабилна фаза, където водородът се превръща в хелий.</p>
+                </div>
+                
+                <div class="star-card" data-star="red-giant">
+                    <div class="star red-giant-star"></div>
+                    <h3>Червени Гиганти</h3>
+                    <p>Звезди в късен етап на еволюция, които са изчерпали водорода в ядрото си и са се разширили значително.</p>
+                </div>
+                
+                <div class="star-card" data-star="white-dwarf">
+                    <div class="star white-dwarf-star"></div>
+                    <h3>Бели Джуджета</h3>
+                    <p>Остатъци от звезди с маса подобна на Слънцето, но с размер подобен на Земята. Изключително плътни.</p>
+                </div>
+                
+                <div class="star-card" data-star="neutron">
+                    <div class="star neutron-star"></div>
+                    <h3>Неутронни Звезди</h3>
+                    <p>Изключително плътни звездни остатъци, образувани при колапса на масивни звезди по време на свръхнова експлозия.</p>
+                </div>
+                
+                <div class="star-card" data-star="supergiant">
+                    <div class="star supergiant-star"></div>
+                    <h3>Свръхгиганти</h3>
+                    <p>Най-масивните и най-ярките звезди. Имат кратък живот и завършват в драматични свръхнови експлозии.</p>
+                </div>
+                
+                <div class="star-card" data-star="black-hole">
+                    <div class="star black-hole-star"></div>
+                    <h3>Черни Дупки</h3>
+                    <p>Региони от пространството с толкова силна гравитация, че нищо, дори светлината, не може да избяга от тях.</p>
+                </div>
+            </div>
+        </section>
+        
+       
+      
+        <section id="star-classification" class="star-classification">
+            <h2>Класификация на звездите</h2>
+            <p class="section-intro">Звездите се класифицират според техните физически характеристики като температура, размер, маса и светимост. Диаграмата на Херцшпрунг-Ръсел е основен инструмент за класификация на звездите.</p>
+            
+            <div class="classification-container">
+                <div class="hr-diagram">
+                    <h3>Диаграма на Херцшпрунг-Ръсел</h3>
+                    <div class="hr-diagram-container">
+                        <canvas id="hr-diagram-canvas"></canvas>
+                    </div>
+                </div>
+                
+                <div class="classification-table">
+                    <h3>Таблица за класификация на звездите</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Спектрален клас</th>
+                                <th>Температура (K)</th>
+                                <th>Цвят</th>
+                                <th>Маса (M☉)</th>
+                                <th>Радиус (R☉)</th>
+                                <th>Светимост (L☉)</th>
+                                <th>Примери</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>O</td>
+                                <td>≥ 30,000</td>
+                                <td class="star-color" style="background-color: #9bb0ff;">Син</td>
+                                <td>≥ 16</td>
+                                <td>≥ 6.6</td>
+                                <td>≥ 30,000</td>
+                                <td>Наос, Алнилам</td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>10,000 - 30,000</td>
+                                <td class="star-color" style="background-color: #aabfff;">Синьо-бял</td>
+                                <td>2.1 - 16</td>
+                                <td>1.8 - 6.6</td>
+                                <td>25 - 30,000</td>
+                                <td>Ригел, Спика</td>
+                            </tr>
+                            <tr>
+                                <td>A</td>
+                                <td>7,500 - 10,000</td>
+                                <td class="star-color" style="background-color: #cad7ff;">Бял</td>
+                                <td>1.4 - 2.1</td>
+                                <td>1.4 - 1.8</td>
+                                <td>5 - 25</td>
+                                <td>Сириус, Вега</td>
+                            </tr>
+                            <tr>
+                                <td>F</td>
+                                <td>6,000 - 7,500</td>
+                                <td class="star-color" style="background-color: #f8f7ff;">Жълто-бял</td>
+                                <td>1.04 - 1.4</td>
+                                <td>1.15 - 1.4</td>
+                                <td>1.5 - 5</td>
+                                <td>Процион, Полукс</td>
+                            </tr>
+                            <tr>
+                                <td>G</td>
+                                <td>5,200 - 6,000</td>
+                                <td class="star-color" style="background-color: #fff4ea;">Жълт</td>
+                                <td>0.8 - 1.04</td>
+                                <td>0.96 - 1.15</td>
+                                <td>0.6 - 1.5</td>
+                                <td>Слънце, Алфа Кентавър A</td>
+                            </tr>
+                            <tr>
+                                <td>K</td>
+                                <td>3,700 - 5,200</td>
+                                <td class="star-color" style="background-color: #ffd2a1;">Оранжев</td>
+                                <td>0.45 - 0.8</td>
+                                <td>0.7 - 0.96</td>
+                                <td>0.08 - 0.6</td>
+                                <td>Арктур, Алдебаран</td>
+                            </tr>
+                            <tr>
+                                <td>M</td>
+                                <td>2,400 - 3,700</td>
+                                <td class="star-color" style="background-color: #ffcc6f;">Червен</td>
+                                <td>0.08 - 0.45</td>
+                                <td>≤ 0.7</td>
+                                <td>≤ 0.08</td>
+                                <td>Бетелгейзе, Проксима Кентавър</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <section id="star-lifecycle" class="star-lifecycle">
+            <h2>Жизнен цикъл на звездите</h2>
+            <p class="section-intro">Звездите преминават през различни етапи на развитие - от раждането им в мъглявини до смъртта им като бели джуджета, неутронни звезди или черни дупки. Жизненият цикъл на звездата зависи основно от нейната първоначална маса.</p>
+            
+            <div class="lifecycle-container">
+                <div class="lifecycle-diagram">
+                    <div class="lifecycle-stage" id="nebula">
+                        <div class="stage-image nebula-image"></div>
+                        <h3>Мъглявина</h3>
+                        <p>Облаци от газ и прах, където се раждат нови звезди.</p>
+                    </div>
+                    <div class="lifecycle-arrow"></div>
+                    <div class="lifecycle-stage" id="protostar">
+                        <div class="stage-image protostar-image"></div>
+                        <h3>Протозвезда</h3>
+                        <p>Ранен етап на формиране на звезда, когато гравитацията започва да свива газа.</p>
+                    </div>
+                    <div class="lifecycle-arrow"></div>
+                    <div class="lifecycle-stage" id="main-sequence">
+                        <div class="stage-image main-sequence-image"></div>
+                        <h3>Главна последователност</h3>
+                        <p>Стабилен етап, където звездата изгаря водород в ядрото си.</p>
+                    </div>
+                    <div class="lifecycle-split"></div>
+                    
+                    <div class="lifecycle-path low-mass">
+                        <h4>Звезди с ниска маса (като Слънцето)</h4>
+                        <div class="lifecycle-stage" id="red-giant-low">
+                            <div class="stage-image red-giant-image"></div>
+                            <h3>Червен гигант</h3>
+                            <p>Звездата се разширява и охлажда след изчерпване на водорода в ядрото.</p>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" id="planetary-nebula">
+                            <div class="stage-image planetary-nebula-image"></div>
+                            <h3>Планетарна мъглявина</h3>
+                            <p>Външните слоеве на звездата се изхвърлят в космоса.</p>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" id="white-dwarf">
+                            <div class="stage-image white-dwarf-image"></div>
+                            <h3>Бяло джудже</h3>
+                            <p>Плътно ядро на звездата, което бавно се охлажда.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="lifecycle-path high-mass">
+                        <h4>Звезди с висока маса</h4>
+                        <div class="lifecycle-stage" id="red-supergiant">
+                            <div class="stage-image red-supergiant-image"></div>
+                            <h3>Червен свръхгигант</h3>
+                            <p>Масивна звезда, която се е разширила значително.</p>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" id="supernova">
+                            <div class="stage-image supernova-image"></div>
+                            <h3>Свръхнова</h3>
+                            <p>Експлозивна смърт на масивна звезда.</p>
+                        </div>
+                        <div class="lifecycle-split"></div>
+                        
+                        <div class="lifecycle-path neutron">
+                            <div class="lifecycle-stage" id="neutron-star">
+                                <div class="stage-image neutron-star-image"></div>
+                                <h3>Неутронна звезда</h3>
+                                <p>Изключително плътен остатък от свръхнова.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="lifecycle-path black-hole">
+                            <div class="lifecycle-stage" id="black-hole">
+                                <div class="stage-image black-hole-image"></div>
+                                <h3>Черна дупка</h3>
+                                <p>Формира се, когато много масивна звезда колапсира под собствената си гравитация.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="interesting-facts" class="interesting-facts">
+            <h2>Интересни факти за звездите</h2>
+            <div class="facts-carousel">
+                <div class="fact-card active">
+                    <h3>Колко звезди има в нашата галактика?</h3>
+                    <p>Млечният път съдържа между 100 и 400 милиарда звезди. Ако броите по една звезда в секунда, ще ви отнеме над 3000 години, за да преброите само звездите в нашата галактика.</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Най-близката звезда до Земята</h3>
+                    <p>След Слънцето, най-близката звезда до нас е Проксима Кентавър, която се намира на около 4.24 светлинни години разстояние. Това означава, че светлината от нея пътува 4.24 години, за да достигне до Земята.</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Най-голямата известна звезда</h3>
+                    <p>UY Щит (UY Scuti) е една от най-големите известни звезди с радиус около 1700 пъти по-голям от този на Слънцето. Ако поставим UY Щит на мястото на Слънцето, тя би погълнала Юпитер!</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Звездите не мигат</h3>
+                    <p>Мигането на звездите, което виждаме от Земята, е оптична илюзия, причинена от турбуленцията в земната атмосфера. В космоса звездите светят с постоянна светлина.</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Звезди без планети</h3>
+                    <p>Въпреки че много звезди имат планетни системи, има и такива, които нямат планети. Някои звезди са част от двойни или множествени системи, където гравитационните взаимодействия могат да попречат на формирането на планети.</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Звезди, които се въртят изключително бързо</h3>
+                    <p>Някои неутронни звезди, наречени пулсари, могат да се въртят стотици пъти в секунда. Най-бързият известен пулсар, PSR J1748-2446ad, се върти около 716 пъти в секунда!</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Звезди с екстремни температури</h3>
+                    <p>Най-горещите звезди могат да достигнат температури от над 50,000 келвина, докато най-хладните червени джуджета имат повърхностни температури от около 2,500 келвина.</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Звезди, които изглеждат сини</h3>
+                    <p>Сините звезди са най-горещите звезди във Вселената. Техният син цвят се дължи на високата им повърхностна температура, която кара ги да излъчват повече синя и ултравиолетова светлина.</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Звезди с планети, подобни на Земята</h3>
+                    <p>Астрономите са открили няколко звезди с планети в "обитаемата зона" - региона около звездата, където условията могат да позволят съществуването на течна вода на повърхността на планетата.</p>
+                </div>
+                <div class="fact-card">
+                    <h3>Звезди, които се движат изключително бързо</h3>
+                    <p>Някои звезди, наречени "хиперскоростни звезди", се движат с толкова високи скорости (над 1000 км/с), че могат да избягат от гравитационното привличане на галактиката.</p>
+                </div>
+                
+                <div class="carousel-controls">
+                    <button id="prev-fact" class="btn">Предишен факт</button>
+                    <button id="next-fact" class="btn">Следващ факт</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="quiz" class="quiz">
+            <h2>Проверете знанията си</h2>
+            <p class="section-intro">Мислите, че знаете всичко за звездите? Проверете знанията си с нашия интерактивен тест!</p>
+            
+            <div class="quiz-container">
+                <div id="quiz-start">
+                    <h3>Готови ли сте да тествате знанията си за звездите?</h3>
+                    <button id="start-quiz" class="btn">Започнете теста</button>
+                </div>
+                
+                <div id="quiz-questions" style="display: none;">
+                    <div id="question-container"></div>
+                    <div id="options-container"></div>
+                    <button id="submit-answer" class="btn">Изпратете отговора</button>
+                </div>
+                
+                <div id="quiz-results" style="display: none;">
+                    <h3>Вашият резултат</h3>
+                    <p id="score-display"></p>
+                    <div id="result-details"></div>
+                    <button id="restart-quiz" class="btn">Опитайте отново</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTUwIDVMNjEgMjVINDAgTDUwIDVNMjUgMzBMNDAgNDVIMTAgTDI1IDMwTTc1IDMwTDkwIDQ1SDYwIEw3NSAzME01MCA1MEw2NSA3MEgzNSBMNTAgNTBNMjAgNzVMNDAgOTVIMCBMMjAgNzVNODAgNzVMMTAwIDk1SDYwIEw4MCA3NSI+PC9wYXRoPjwvc3ZnPg==" alt="Звезден Атлас Лого">
+                <h3>Звезден Атлас</h3>
+            </div>
+            <div class="footer-links">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#home">Начало</a></li>
+                    <li><a href="#star-types">Видове звезди</a></li>
+                    <li><a href="#star-map">Звездна карта</a></li>
+                    <li><a href="#star-classification">Класификация</a></li>
+                    <li><a href="#star-lifecycle">Жизнен цикъл</a></li>
+                    <li><a href="#interesting-facts">Интересни факти</a></li>
+                    <li><a href="#quiz">Тест</a></li>
+                </ul>
+            </div>
+            <div class="footer-resources">
+                <h4>Полезни ресурси</h4>
+                <ul>
+                    <li><a href="https://www.nasa.gov/" target="_blank">NASA</a></li>
+                    <li><a href="https://www.esa.int/" target="_blank">Европейска космическа агенция</a></li>
+                    <li><a href="https://www.space.com/" target="_blank">Space.com</a></li>
+                    <li><a href="https://www.skyandtelescope.org/" target="_blank">Sky & Telescope</a></li>
+                </ul>
+            </div>
+        </div>
+        
+    </footer>
+    
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="modal-header">
+                <div id="modal-image"></div>
+                <h2 id="modal-title"></h2>
+            </div>
+            <div class="modal-body">
+                <p id="modal-description"></p>
+                <div id="modal-characteristics"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script src="star-classification.js"></script>
+</body>
+</html>

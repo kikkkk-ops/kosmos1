@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сатурн - Господарят на пръстените</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles-container">
+        <div class="particles"></div>
+        <div class="particles2"></div>
+        <div class="particles3"></div>
+    </div>
+
+    <nav class="side-nav">
+        <div class="logo">
+            <div class="planet-icon"></div>
+            <h1>Сатурн</h1>
+        </div>
+        <div class="nav-divider"></div>
+        <ul class="chapter-nav">
+            <li><a href="#overview"><span>01</span>Общ преглед</a></li>
+            <li><a href="#structure"><span>02</span>Строеж</a></li>
+            <li><a href="#rings"><span>03</span>Пръстени</a></li>
+            <li><a href="#moons"><span>04</span>Луни</a></li>
+            <li><a href="#exploration"><span>05</span>Изследване</a></li>
+            <li><a href="#facts"><span>06</span>Интересни факти</a></li>
+            <li><a href="#glossary"><span>07</span>Речник</a></li>
+        </ul>
+        <div class="theme-toggle">
+            <i class="fas fa-sun theme-icon"></i>
+            <i class="fas fa-moon theme-icon active"></i>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <nav class="top-nav">
+            <button class="menu-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <div class="search-bar">
+                <input type="text" placeholder="Търсене...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+
+        <main>
+            <section id="overview" class="section">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="glitch">Сатурн</h1>
+                        <p class="lead-text">Господарят на пръстените</p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-value">9.5</span>
+                                <span class="stat-label">Земни диаметри</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">95</span>
+                                <span class="stat-label">Земни маси</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">83</span>
+                                <span class="stat-label">Луни</span>
+                            </div>
+                        </div>
+                        <button class="cta-button">
+                            <i class="fas fa-arrow-down"></i>
+                            Плъзнете надолу
+                        </button>
+                    </div>
+                    <div class="hero-planet-container">
+                        <div class="planet-glow"></div>
+                        <div class="hero-planet">
+                            <div class="planet-surface"></div>
+                            <div class="rings"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="structure" class="section dark">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2>Строеж</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-layer-group"></i>
+                            <h3>Вътрешен строеж</h3>
+                        </div>
+                        <p>Сатурн има сложна вътрешна структура, състояща се от:</p>
+                        <ul>
+                            <li>Малко скалисто ядро</li>
+                            <li>Слой от метален водород</li>
+                            <li>Слой от течен водород</li>
+                            <li>Газова атмосфера</li>
+                        </ul>
+                    </div>
+                    <div class="planet-model-container">
+                        <div class="planet-model">
+                            <div class="planet-3d" data-view="external"></div>
+                            <div class="planet-controls">
+                                <button class="planet-control active" data-view="external">Външен изглед</button>
+                                <button class="planet-control" data-view="internal">Вътрешен строеж</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="rings" class="section">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2>Пръстени</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid reverse">
+                    <div class="rings-visualization">
+                        <div class="rings-layers">
+                            <div class="ring a"></div>
+                            <div class="ring b"></div>
+                            <div class="ring c"></div>
+                            <div class="ring-labels">
+                                <span class="ring-label">A пръстен</span>
+                                <span class="ring-label">B пръстен</span>
+                                <span class="ring-label">C пръстен</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-circle"></i>
+                            <h3>Система от пръстени</h3>
+                        </div>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span>Основни пръстени</span>
+                                <span>7</span>
+                            </div>
+                            <div class="data-row">
+                                <span>Дебелина</span>
+                                <span>10-1000 метра</span>
+                            </div>
+                            <div class="data-row">
+                                <span>Ширина</span>
+                                <span>70,000 км</span>
+                            </div>
+                            <div class="data-row">
+                                <span>Състав</span>
+                                <span>Лед и скали</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="moons" class="section dark">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2>Луни</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-moon"></i>
+                            <h3>Основни луни</h3>
+                        </div>
+                        <p>Най-интересните луни на Сатурн:</p>
+                        <ul>
+                            <li>Титан - най-голямата луна с плътна атмосфера</li>
+                            <li>Енцелад - с гейзери от воден лед</li>
+                            <li>Мимас - прилича на Звездата на смъртта</li>
+                            <li>Япет - с мистериозна тъмна страна</li>
+                        </ul>
+                    </div>
+                    <div class="moons-visualization">
+                        <div class="moon titan"></div>
+                        <div class="moon enceladus"></div>
+                        <div class="moon mimas"></div>
+                        <div class="moon iapetus"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="exploration" class="section dark">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2>Изследване</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="exploration-gallery">
+                    <div class="gallery-header">
+                        <h3>Космически мисии</h3>
+                    </div>
+                    <div class="gallery-items">
+                        <div class="gallery-item">
+                            <div class="gallery-image pioneer"></div>
+                            <div class="gallery-caption">
+                                <h4>Pioneer 11</h4>
+                                <p>Първата сонда, достигнала до Сатурн (1979)</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-image voyager"></div>
+                            <div class="gallery-caption">
+                                <h4>Voyager 1 & 2</h4>
+                                <p>Детайлни снимки на пръстените и луните (1980-1981)</p>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-image cassini"></div>
+                            <div class="gallery-caption">
+                                <h4>Cassini-Huygens</h4>
+                                <p>Най-подробното изследване на системата (2004-2017)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="facts" class="section">
+                <div class="section-header">
+                    <span class="section-number">06</span>
+                    <h2>Интересни факти</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <i class="fas fa-water fact-icon"></i>
+                        <h3>Плаваща планета</h3>
+                        <p>Сатурн е толкова лек, че би плувал във вода, ако имаше достатъчно голям океан</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-wind fact-icon"></i>
+                        <h3>Бързо въртене</h3>
+                        <p>Денят на Сатурн трае само 10.7 земни часа</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-temperature-high fact-icon"></i>
+                        <h3>Екстремни температури</h3>
+                        <p>Температурата в атмосферата варира от -178°C до -138°C</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-ring fact-icon"></i>
+                        <h3>Динамични пръстени</h3>
+                        <p>Пръстените на Сатурн са изключително тънки - само около 10 метра</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="glossary" class="section dark">
+                <div class="section-header">
+                    <span class="section-number">07</span>
+                    <h2>Речник</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="glossary-search">
+                    <input type="text" class="glossary-search-input" placeholder="Търсене в речника...">
+                </div>
+                <div class="glossary-items">
+                    <div class="glossary-item">
+                        <h3>Деление на Касини</h3>
+                        <p>Най-голямата празнина в пръстените на Сатурн</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Хексагон</h3>
+                        <p>Уникална шестоъгълна буря на северния полюс на Сатурн</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Криовулканизъм</h3>
+                        <p>Изригване на леден материал от повърхността на някои луни</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Пастири</h3>
+                        <p>Малки луни, които поддържат структурата на пръстените</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-icon"></div>
+                    <h2>Сатурн</h2>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Навигация</h4>
+                        <ul>
+                            <li><a href="#overview">Общ преглед</a></li>
+                            <li><a href="#structure">Строеж</a></li>
+                            <li><a href="#rings">Пръстени</a></li>
+                            <li><a href="#moons">Луни</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h4>Ресурси</h4>
+                        <ul>
+                            <li><a href="#exploration">Изследване</a></li>
+                            <li><a href="#facts">Факти</a></li>
+                            <li><a href="#glossary">Речник</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
