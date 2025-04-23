@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Венера - Планетата на любовта</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles-container">
+        <div class="particles"></div>
+        <div class="particles2"></div>
+        <div class="particles3"></div>
+    </div>
+
+    <nav class="side-nav">
+        <div class="logo">
+            <div class="planet-icon"></div>
+            <h2>Венера</h2>
+        </div>
+        <div class="nav-divider"></div>
+        <ul class="chapter-nav">
+            <li><a href="#overview"><span>01</span> Общ преглед</a></li>
+            <li><a href="#structure"><span>02</span> Строеж</a></li>
+            <li><a href="#atmosphere"><span>03</span> Атмосфера</a></li>
+            <li><a href="#orbit"><span>04</span> Орбита</a></li>
+            <li><a href="#exploration"><span>05</span> Изследване</a></li>
+            <li><a href="#facts"><span>06</span> Интересни факти</a></li>
+            <li><a href="#glossary"><span>07</span> Речник</a></li>
+        </ul>
+        <div class="theme-toggle">
+            <i class="fas fa-sun theme-icon"></i>
+            <i class="fas fa-moon theme-icon active"></i>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <nav class="top-nav">
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Търсене...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+
+        <section id="hero" class="section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="glitch" data-text="Венера">Венера</h1>
+                        <p class="lead-text">Втората планета от Слънцето и най-ярката в нощното небе</p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-value">12,104</span>
+                                <span class="stat-label">км диаметър</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">4.87</span>
+                                <span class="stat-label">×10²⁴ кг маса</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">0</span>
+                                <span class="stat-label">естествени спътници</span>
+                            </div>
+                        </div>
+                        <button class="cta-button">
+                            <i class="fas fa-globe"></i>
+                            Научете повече
+                        </button>
+                    </div>
+                    <div class="hero-planet-container">
+                        <div class="planet-glow"></div>
+                        <div class="hero-planet"></div>
+                        <div class="planet-clouds"></div>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Плъзнете надолу</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2>Общ преглед</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h4>Основна информация</h4>
+                        </div>
+                        <p>Венера е втората планета от Слънцето и най-близката по размер до Земята. Тя е известна с гъстата си атмосфера, съставена предимно от въглероден диоксид, която създава силен парников ефект.</p>
+                    </div>
+                    <div class="planet-model-container">
+                        <div class="planet-model">
+                            <div class="planet-3d"></div>
+                        </div>
+                        <div class="planet-controls">
+                            <button class="planet-control active">Външен вид</button>
+                            <button class="planet-control">Вътрешен строеж</button>
+                        </div>
+                        <p class="caption">3D модел на Венера</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="structure" class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2>Строеж</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid reverse">
+                    <div class="structure-diagram">
+                        <div class="planet-cutaway">
+                            <div class="layer core"></div>
+                            <div class="layer mantle"></div>
+                            <div class="layer crust"></div>
+                        </div>
+                        <div class="layer-buttons">
+                            <button class="layer-button active" data-layer="core">Ядро</button>
+                            <button class="layer-button" data-layer="mantle">Мантия</button>
+                            <button class="layer-button" data-layer="crust">Кора</button>
+                        </div>
+                        <div class="layer-info">
+                            <div class="layer-detail active" data-layer="core">
+                                <h3>Ядро</h3>
+                                <p>Метално ядро, подобно на земното, но с по-малък размер. Съставено е предимно от желязо и никел.</p>
+                            </div>
+                            <div class="layer-detail" data-layer="mantle">
+                                <h3>Мантия</h3>
+                                <p>Силикатна мантия, която обгражда ядрото. Съдържа магма и вулканични скали.</p>
+                            </div>
+                            <div class="layer-detail" data-layer="crust">
+                                <h3>Кора</h3>
+                                <p>Тънка скалиста кора, покрита с вулканични образувания и равнини.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>Слоеве на Венера</h4>
+                        </div>
+                        <p>Венера има три основни слоя, подобни на тези на Земята, но с някои важни различия.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Кора</span>
+                                <span class="data-value">30-50 км</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Мантия</span>
+                                <span class="data-value">2,800 км</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Ядро</span>
+                                <span class="data-value">3,000 км</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="atmosphere" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2>Атмосфера</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-cloud"></i>
+                            <h4>Атмосферни характеристики</h4>
+                        </div>
+                        <p>Атмосферата на Венера е изключително гъста и съставена предимно от въглероден диоксид, което води до силен парников ефект.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Налягане</span>
+                                <span class="data-value">92 бара</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Температура</span>
+                                <span class="data-value">462°C</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Състав</span>
+                                <span class="data-value">96.5% CO₂</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="atmosphere-visualization">
+                        <div class="cloud-layers">
+                            <div class="cloud-layer upper"></div>
+                            <div class="cloud-layer middle"></div>
+                            <div class="cloud-layer lower"></div>
+                        </div>
+                        <div class="atmosphere-details">
+                            <div class="atmosphere-detail active" data-layer="upper">
+                                <h4>Горен слой</h4>
+                                <p>Съдържа сярна киселина и се движи с висока скорост.</p>
+                            </div>
+                            <div class="atmosphere-detail" data-layer="middle">
+                                <h4>Среден слой</h4>
+                                <p>Основен слой от облаци, който покрива цялата планета.</p>
+                            </div>
+                            <div class="atmosphere-detail" data-layer="lower">
+                                <h4>Долен слой</h4>
+                                <p>Гъст слой от въглероден диоксид и други газове.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="orbit" class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2>Орбита</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid reverse">
+                    <div class="orbit-visualization">
+                        <div class="solar-system">
+                            <div class="sun"></div>
+                            <div class="venus-orbit"></div>
+                            <div class="venus"></div>
+                        </div>
+                        <div class="orbit-details">
+                            <div class="orbit-detail active">
+                                <h4>Орбитални параметри</h4>
+                                <p>Венера има почти кръгла орбита и върти се в обратна посока спрямо повечето планети.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-satellite"></i>
+                            <h4>Орбитални данни</h4>
+                        </div>
+                        <p>Венера обикаля около Слънцето на средно разстояние от 108 милиона километра.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Средно разстояние</span>
+                                <span class="data-value">108.2 млн. км</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Орбитален период</span>
+                                <span class="data-value">225 земни дни</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Средна скорост</span>
+                                <span class="data-value">35.0 км/с</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exploration" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2>Изследване</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-space-shuttle"></i>
+                            <h4>Космически мисии</h4>
+                        </div>
+                        <p>Венера е била цел на множество космически мисии, включително първите успешни кацания на друга планета.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Венера 7</span>
+                                <span class="data-value">1970</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Магелан</span>
+                                <span class="data-value">1990-1994</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Акацуки</span>
+                                <span class="data-value">2015-настояще</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="exploration-gallery">
+                        <h3 class="gallery-header">Важни мисии</h3>
+                        <div class="gallery-items">
+                            <div class="gallery-item">
+                                <div class="gallery-image venera7"></div>
+                                <div class="gallery-caption">
+                                    <h4>Венера 7</h4>
+                                    <p>Първата сонда, успешно кацнала на Венера</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-image magellan"></div>
+                                <div class="gallery-caption">
+                                    <h4>Магелан</h4>
+                                    <p>Първата детайлна карта на повърхността</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-image akatsuki"></div>
+                                <div class="gallery-caption">
+                                    <h4>Акацуки</h4>
+                                    <p>Изследване на атмосферата и климата</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="facts" class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">06</span>
+                    <h2>Интересни факти</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <i class="fas fa-temperature-high fact-icon"></i>
+                        <h3>Температури</h3>
+                        <p>Най-горещата планета в Слънчевата система - до 462°C</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-clock fact-icon"></i>
+                        <h3>Ден</h3>
+                        <p>Един ден на Венера е по-дълъг от една година</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-arrows-alt-v fact-icon"></i>
+                        <h3>Въртене</h3>
+                        <p>Върти се в обратна посока спрямо повечето планети</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-cloud fact-icon"></i>
+                        <h3>Облаци</h3>
+                        <p>Облаците са съставени от сярна киселина</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="glossary" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">07</span>
+                    <h2>Речник</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="glossary-search">
+                    <input type="text" class="glossary-search-input" placeholder="Търсене в речника...">
+                </div>
+                <div class="glossary-items">
+                    <div class="glossary-item">
+                        <h3>Парников ефект</h3>
+                        <p>Процес, при който атмосферата задържа топлината, водещ до повишаване на температурата.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Ретроградно въртене</h3>
+                        <p>Въртене в посока, обратна на обичайната за планетите в Слънчевата система.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Синхронно въртене</h3>
+                        <p>Когато периодът на въртене на планетата е свързан с орбиталния ѝ период.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Вулканизъм</h3>
+                        <p>Процес на изригване на магма и други материали от вътрешността на планетата.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <div class="footer-icon"></div>
+                        <h3>Венера</h3>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-links-column">
+                            <h4>Навигация</h4>
+                            <ul>
+                                <li><a href="#overview">Общ преглед</a></li>
+                                <li><a href="#structure">Строеж</a></li>
+                                <li><a href="#atmosphere">Атмосфера</a></li>
+                                <li><a href="#orbit">Орбита</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-links-column">
+                            <h4>Ресурси</h4>
+                            <ul>
+                                <li><a href="#exploration">Изследване</a></li>
+                                <li><a href="#facts">Факти</a></li>
+                                <li><a href="#glossary">Речник</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

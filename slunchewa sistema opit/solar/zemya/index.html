@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Земята - Нашата планета</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="particles-container">
+        <div class="particles"></div>
+        <div class="particles2"></div>
+        <div class="particles3"></div>
+    </div>
+
+    <nav class="side-nav">
+        <div class="logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/1200px-The_Earth_seen_from_Apollo_17.jpg" alt="Земята" class="sun-icon">
+            <h2>Земята</h2>
+        </div>
+        <div class="nav-divider"></div>
+        <ul class="chapter-nav">
+            <li><a href="#overview"><span>01</span> Общ преглед</a></li>
+            <li><a href="#structure"><span>02</span> Строеж</a></li>
+            <li><a href="#atmosphere"><span>03</span> Атмосфера</a></li>
+            <li><a href="#magnetism"><span>04</span> Магнитно поле</a></li>
+            <li><a href="#life"><span>05</span> Живот</a></li>
+            <li><a href="#climate"><span>06</span> Климат</a></li>
+            <li><a href="#exploration"><span>07</span> Изследване</a></li>
+            <li><a href="#facts"><span>08</span> Интересни факти</a></li>
+            <li><a href="#glossary"><span>09</span> Речник</a></li>
+        </ul>
+        <div class="theme-toggle">
+            <i class="fas fa-sun theme-icon active"></i>
+            <i class="fas fa-moon theme-icon"></i>
+        </div>
+    </nav>
+
+    <div class="content-wrapper">
+        <nav class="top-nav">
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Търсене...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </nav>
+
+        <section id="hero" class="section">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="glitch" data-text="Земята">Земята</h1>
+                        <p class="lead-text">Третата планета от Слънчевата система и наш дом</p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-value">12,742</span>
+                                <span class="stat-label">км диаметър</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">5.97</span>
+                                <span class="stat-label">×10²⁴ кг маса</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">1</span>
+                                <span class="stat-label">естествен спътник</span>
+                            </div>
+                        </div>
+                        <button class="cta-button">
+                            <i class="fas fa-globe"></i>
+                            Научете повече
+                        </button>
+                    </div>
+                    <div class="hero-sun-container">
+                        <div class="sun-glow"></div>
+                        <div class="hero-sun"></div>
+                        <div class="sun-flares"></div>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Превъртете надолу</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="overview" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">01</span>
+                    <h2>Общ преглед</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-info-circle"></i>
+                            <h4>Основна информация</h4>
+                        </div>
+                        <p>Земята е третата планета от Слънчевата система и единствената известна планета, която поддържа живот. Тя е най-голямата от земеподобните планети в Слънчевата система.</p>
+                    </div>
+                    <div class="sun-model-container">
+                        <div class="sun-model">
+                            <div class="sun-3d"></div>
+                        </div>
+                        <div class="sun-controls">
+                            <button class="sun-control active">Външен вид</button>
+                            <button class="sun-control">Вътрешен строеж</button>
+                        </div>
+                        <p class="caption">3D модел на Земята</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="structure" class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">02</span>
+                    <h2>Строеж</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid reverse">
+                    <div class="structure-diagram">
+                        <div class="sun-cutaway">
+                            <div class="layer core"></div>
+                            <div class="layer mantle"></div>
+                            <div class="layer crust"></div>
+                        </div>
+                        <div class="layer-buttons">
+                            <button class="layer-button active" data-layer="core">Ядро</button>
+                            <button class="layer-button" data-layer="mantle">Мантия</button>
+                            <button class="layer-button" data-layer="crust">Земна кора</button>
+                        </div>
+                        <div class="layer-info">
+                            <div class="layer-detail active" data-layer="core">
+                                <h3>Ядро</h3>
+                                <p>Вътрешното ядро е твърдо и съставено предимно от желязо и никел. Външното ядро е течно и генерира магнитното поле на Земята.</p>
+                            </div>
+                            <div class="layer-detail" data-layer="mantle">
+                                <h3>Мантия</h3>
+                                <p>Съставена е от силикатни скали и е разделена на горна и долна мантия. Тук се образуват конвекционни течения.</p>
+                            </div>
+                            <div class="layer-detail" data-layer="crust">
+                                <h3>Земна кора</h3>
+                                <p>Тънък външен слой, съставен от континентална и океанска кора. Тук се намират всички форми на живот.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>Слоеве на Земята</h4>
+                        </div>
+                        <p>Земята има сложна вътрешна структура, състояща се от няколко слоя с различни физически и химически свойства.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Земна кора</span>
+                                <span class="data-value">5-70 км</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Мантия</span>
+                                <span class="data-value">2,900 км</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Външно ядро</span>
+                                <span class="data-value">2,200 км</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Вътрешно ядро</span>
+                                <span class="data-value">1,250 км</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="atmosphere" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">03</span>
+                    <h2>Атмосфера</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="atmosphere-visualization">
+                        <div class="atmosphere-layers">
+                            <div class="sun-surface"></div>
+                            <div class="atmosphere-layer troposphere"></div>
+                            <div class="atmosphere-layer stratosphere"></div>
+                            <div class="atmosphere-layer mesosphere"></div>
+                            <div class="atmosphere-layer thermosphere"></div>
+                            <div class="atmosphere-layer exosphere"></div>
+                        </div>
+                        <div class="atmosphere-details">
+                            <div class="atmosphere-detail active" data-layer="troposphere">
+                                <h4>Тропосфера</h4>
+                                <p>Най-долният слой, където се развиват всички метеорологични явления.</p>
+                            </div>
+                            <div class="atmosphere-detail" data-layer="stratosphere">
+                                <h4>Стратосфера</h4>
+                                <p>Съдържа озония слой, който предпазва от ултравиолетови лъчи.</p>
+                            </div>
+                            <div class="atmosphere-detail" data-layer="mesosphere">
+                                <h4>Мезосфера</h4>
+                                <p>Слой, в който изгарят повечето метеорити.</p>
+                            </div>
+                            <div class="atmosphere-detail" data-layer="thermosphere">
+                                <h4>Термосфера</h4>
+                                <p>Слой с високи температури, където се намират спътниците.</p>
+                            </div>
+                            <div class="atmosphere-detail" data-layer="exosphere">
+                                <h4>Екзосфера</h4>
+                                <p>Най-външният слой, който постепенно преминава в космоса.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-wind"></i>
+                            <h4>Атмосферен състав</h4>
+                        </div>
+                        <p>Земната атмосфера е съставена предимно от азот и кислород, с малки количества други газове.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Азот (N₂)</span>
+                                <span class="data-value">78.08%</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Кислород (O₂)</span>
+                                <span class="data-value">20.95%</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Аргон (Ar)</span>
+                                <span class="data-value">0.93%</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Въглероден диоксид (CO₂)</span>
+                                <span class="data-value">0.04%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="magnetism" class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">04</span>
+                    <h2>Магнитно поле</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid reverse">
+                    <div class="influence-visualization">
+                        <div class="earth-sun-system">
+                            <div class="sun-model"></div>
+                            <div class="solar-wind"></div>
+                            <div class="earth-model">
+                                <div class="earth-sphere"></div>
+                                <div class="atmosphere"></div>
+                                <div class="magnetosphere"></div>
+                            </div>
+                        </div>
+                        <div class="influence-details">
+                            <div class="influence-detail active" data-influence="protection">
+                                <h3>Защита</h3>
+                                <p>Предпазва от слънчевия вятър</p>
+                            </div>
+                            <div class="influence-detail" data-influence="aurora">
+                                <h3>Полярно сияние</h3>
+                                <p>Създава красиви светлинни явления</p>
+                            </div>
+                            <div class="influence-detail" data-influence="navigation">
+                                <h3>Навигация</h3>
+                                <p>Използва се за ориентация</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-compass"></i>
+                            <h4>Магнитно поле</h4>
+                        </div>
+                        <p>Земното магнитно поле се генерира от движението на течното външно ядро и играе важна роля за защитата на живота на планетата.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Магнитна индукция</span>
+                                <span class="data-value">25-65 μT</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Магнитни полюси</span>
+                                <span class="data-value">11° отклонение</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Инверсия</span>
+                                <span class="data-value">~300,000 години</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="life" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">05</span>
+                    <h2>Живот</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-leaf"></i>
+                            <h4>Биосфера</h4>
+                        </div>
+                        <p>Земята е единствената известна планета, която поддържа живот. Биосферата включва всички живи организми и техните среди, от най-дълбоките океански дълбини до най-високите планини.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Видове</span>
+                                <span class="data-value">~8.7 милиона</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Биоми</span>
+                                <span class="data-value">14 основни</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Екосистеми</span>
+                                <span class="data-value">Безброй</span>
+                            </div>
+                        </div>
+                        <div class="info-box-content">
+                            <h5>Еволюция на живота</h5>
+                            <p>Животът на Земята се е развивал в продължение на повече от 3.5 милиарда години. Първите живи организми са били едноклетъчни, а днес планетата е дом на сложни многоклетъчни организми, включително човека.</p>
+                            
+                            <h5>Биологично разнообразие</h5>
+                            <p>Земята притежава изключително богато биологично разнообразие, включващо:</p>
+                            <ul>
+                                <li>Растения - от мъхове до гигантски секвои</li>
+                                <li>Животни - от микроорганизми до сини китове</li>
+                                <li>Гъби - над 144,000 известни вида</li>
+                                <li>Бактерии и археи - основен компонент на биосферата</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lifecycle-visualization">
+                        <div class="lifecycle-stages">
+                            <div class="lifecycle-stage nebula" data-stage="nebula">
+                                <div class="stage-content">
+                                    <h4>Формиране</h4>
+                                    <p>4.5 милиарда години</p>
+                                </div>
+                            </div>
+                            <div class="lifecycle-stage early-earth" data-stage="early-earth">
+                                <div class="stage-content">
+                                    <h4>Ранна Земя</h4>
+                                    <p>3.8 милиарда години</p>
+                                </div>
+                            </div>
+                            <div class="lifecycle-stage life" data-stage="life">
+                                <div class="stage-content">
+                                    <h4>Поява на живот</h4>
+                                    <p>3.5 милиарда години</p>
+                                </div>
+                            </div>
+                            <div class="lifecycle-stage future" data-stage="future">
+                                <div class="stage-content">
+                                    <h4>Бъдеще</h4>
+                                    <p>След 1 милиард години</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lifecycle-controls">
+                            <button class="lifecycle-control active" data-stage="nebula">Формиране</button>
+                            <button class="lifecycle-control" data-stage="early-earth">Ранна Земя</button>
+                            <button class="lifecycle-control" data-stage="life">Поява на живот</button>
+                            <button class="lifecycle-control" data-stage="future">Бъдеще</button>
+                        </div>
+                        <div class="lifecycle-details">
+                            <div class="lifecycle-detail active" data-stage="nebula">
+                                <h4>Формиране на Земята</h4>
+                                <p>Земята се е формирала преди около 4.5 милиарда години от слънчевата мъглявина. Първоначално е била гореща топка от разтопени скали и метали.</p>
+                            </div>
+                            <div class="lifecycle-detail" data-stage="early-earth">
+                                <h4>Ранна Земя</h4>
+                                <p>Първите океани се образуват преди около 3.8 милиарда години. Атмосферата е била богата на въглероден диоксид и метан, без свободен кислород.</p>
+                            </div>
+                            <div class="lifecycle-detail" data-stage="life">
+                                <h4>Поява на живот</h4>
+                                <p>Първите живи организми се появяват преди около 3.5 милиарда години. Те са били едноклетъчни организми, подобни на днешните бактерии.</p>
+                            </div>
+                            <div class="lifecycle-detail" data-stage="future">
+                                <h4>Бъдеще на живота</h4>
+                                <p>След около 1 милиард години, повишаването на слънчевата светимост ще направи Земята твърде гореща за поддържане на сложен живот.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="climate" class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">06</span>
+                    <h2>Климат</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid reverse">
+                    <div class="activity-visualization">
+                        <div class="solar-cycle">
+                            <div class="cycle-stages">
+                                <div class="cycle-stage ice-age" data-stage="ice-age">
+                                    <div class="stage-content">
+                                        <h4>Ледена епоха</h4>
+                                        <p>Последна: 20,000 години</p>
+                                    </div>
+                                </div>
+                                <div class="cycle-stage warming" data-stage="warming">
+                                    <div class="stage-content">
+                                        <h4>Затопляне</h4>
+                                        <p>Холоцен: 11,700 години</p>
+                                    </div>
+                                </div>
+                                <div class="cycle-stage current" data-stage="current">
+                                    <div class="stage-content">
+                                        <h4>Настояще</h4>
+                                        <p>Антропоцен</p>
+                                    </div>
+                                </div>
+                                <div class="cycle-stage future" data-stage="future">
+                                    <div class="stage-content">
+                                        <h4>Бъдеще</h4>
+                                        <p>Прогнози до 2100</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cycle-controls">
+                            <button class="cycle-control active" data-stage="ice-age">Ледена епоха</button>
+                            <button class="cycle-control" data-stage="warming">Затопляне</button>
+                            <button class="cycle-control" data-stage="current">Настояще</button>
+                            <button class="cycle-control" data-stage="future">Бъдеще</button>
+                        </div>
+                        <div class="cycle-info">
+                            <div class="cycle-detail active" data-stage="ice-age">
+                                <h3>Ледена епоха</h3>
+                                <p>Период на глобално охлаждане и разширяване на ледниците. Последната ледена епоха е завършила преди около 11,700 години.</p>
+                                <ul>
+                                    <li>Средна температура: 5°C по-ниска от днешната</li>
+                                    <li>Ледена покривка: 30% от сушата</li>
+                                    <li>Ниво на океана: 120 метра по-ниско</li>
+                                </ul>
+                            </div>
+                            <div class="cycle-detail" data-stage="warming">
+                                <h3>Затопляне</h3>
+                                <p>Период на повишаване на температурите и отстъпване на ледниците. Холоценът е характеризиран с относително стабилен климат.</p>
+                                <ul>
+                                    <li>Средна температура: 14°C</li>
+                                    <li>Ледена покривка: 10% от сушата</li>
+                                    <li>Ниво на океана: стабилно</li>
+                                </ul>
+                            </div>
+                            <div class="cycle-detail" data-stage="current">
+                                <h3>Настояще</h3>
+                                <p>Съвременен климат с тенденция към глобално затопляне, предизвикано от човешката дейност.</p>
+                                <ul>
+                                    <li>Средна температура: 15°C</li>
+                                    <li>Повишаване на температурата: 1.1°C от 1880</li>
+                                    <li>Повишаване на океана: 20 см от 1900</li>
+                                </ul>
+                            </div>
+                            <div class="cycle-detail" data-stage="future">
+                                <h3>Бъдеще</h3>
+                                <p>Прогнози за климатични промени и техните последици според различни сценарии.</p>
+                                <ul>
+                                    <li>Повишаване на температурата: 1.5-4.5°C до 2100</li>
+                                    <li>Повишаване на океана: 0.3-1 метър до 2100</li>
+                                    <li>Честота на екстремни събития: увеличена</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-temperature-high"></i>
+                            <h4>Климатични зони</h4>
+                        </div>
+                        <p>Земята има различни климатични зони, които се влияят от географската ширина, надморската височина и близостта до океаните.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Тропична</span>
+                                <span class="data-value">23.5°N - 23.5°S</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Умерена</span>
+                                <span class="data-value">23.5° - 66.5°</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Полярна</span>
+                                <span class="data-value">66.5° - 90°</span>
+                            </div>
+                        </div>
+                        <div class="info-box-content">
+                            <h5>Климатични фактори</h5>
+                            <p>Климатът на Земята се влияе от множество фактори:</p>
+                            <ul>
+                                <li>Слънчева радиация</li>
+                                <li>Атмосферен състав</li>
+                                <li>Океански течения</li>
+                                <li>Релеф и надморска височина</li>
+                                <li>Човешка дейност</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="exploration" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">07</span>
+                    <h2>Изследване</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="content-grid">
+                    <div class="info-box">
+                        <div class="info-box-header">
+                            <i class="fas fa-satellite"></i>
+                            <h4>Космически изследвания</h4>
+                        </div>
+                        <p>Човечеството изследва Земята от космоса чрез спътници и космически станции, които предоставят ценна информация за нашата планета.</p>
+                        <div class="data-table">
+                            <div class="data-row">
+                                <span class="data-label">Активни спътници</span>
+                                <span class="data-value">~2,000</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Космически станции</span>
+                                <span class="data-value">1 (МКС)</span>
+                            </div>
+                            <div class="data-row">
+                                <span class="data-label">Дълбочина на океаните</span>
+                                <span class="data-value">~80% неизследвани</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="exploration-gallery">
+                        <h3 class="gallery-header">Важни мисии</h3>
+                        <div class="gallery-items">
+                            <div class="gallery-item">
+                                <div class="gallery-image iss"></div>
+                                <div class="gallery-caption">
+                                    <h4>Международна космическа станция</h4>
+                                    <p>Постоянна лаборатория в орбита</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-image hubble"></div>
+                                <div class="gallery-caption">
+                                    <h4>Хъбъл</h4>
+                                    <p>Космически телескоп</p>
+                                </div>
+                            </div>
+                            <div class="gallery-item">
+                                <div class="gallery-image voyager"></div>
+                                <div class="gallery-caption">
+                                    <h4>Вояджър</h4>
+                                    <p>Междузвездни сонди</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="facts" class="section dark">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">08</span>
+                    <h2>Интересни факти</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                        <i class="fas fa-water fact-icon"></i>
+                        <h3>Вода</h3>
+                        <p>71% от повърхността на Земята е покрита с вода</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-mountain fact-icon"></i>
+                        <h3>Еверест</h3>
+                        <p>Най-високата точка на Земята е 8,848 метра</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-tint fact-icon"></i>
+                        <h3>Марианска падина</h3>
+                        <p>Най-дълбоката точка в океана е 10,994 метра</p>
+                    </div>
+                    <div class="fact-card">
+                        <i class="fas fa-clock fact-icon"></i>
+                        <h3>Време</h3>
+                        <p>Един ден на Земята е 23 часа, 56 минути и 4 секунди</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="glossary" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-number">09</span>
+                    <h2>Речник</h2>
+                    <div class="section-line"></div>
+                </div>
+                <div class="glossary-search">
+                    <input type="text" class="glossary-search-input" placeholder="Търсене в речника...">
+                </div>
+                <div class="glossary-items">
+                    <div class="glossary-item">
+                        <h3>Атмосфера</h3>
+                        <p>Газов слой, обграждащ Земята, съставен предимно от азот и кислород.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Биосфера</h3>
+                        <p>Област на Земята, населена с живи организми.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Геосфера</h3>
+                        <p>Твърдата част на Земята, включваща ядрото, мантията и кората.</p>
+                    </div>
+                    <div class="glossary-item">
+                        <h3>Хидросфера</h3>
+                        <p>Всичката вода на Земята, включваща океаните, реките, езерата и ледниците.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/1200px-The_Earth_seen_from_Apollo_17.jpg" alt="Земята" class="footer-icon">
+                        <h3>Земята</h3>
+                    </div>
+                    <div class="footer-links">
+                        <div class="footer-links-column">
+                            <h4>Навигация</h4>
+                            <ul>
+                                <li><a href="#overview">Общ преглед</a></li>
+                                <li><a href="#structure">Строеж</a></li>
+                                <li><a href="#atmosphere">Атмосфера</a></li>
+                                <li><a href="#magnetism">Магнитно поле</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-links-column">
+                            <h4>Ресурси</h4>
+                            <ul>
+                                <li><a href="#life">Живот</a></li>
+                                <li><a href="#climate">Климат</a></li>
+                                <li><a href="#exploration">Изследване</a></li>
+                                <li><a href="#facts">Факти</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
