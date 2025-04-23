@@ -1,0 +1,58 @@
+/* Planet images and animations */
+.planet-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-bottom: 6px;
+    transition: transform 0.3s ease;
+}
+
+.planet-image:hover {
+    transform: scale(1.1);
+}
+
+.planet-visualization {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.planet-3d {
+    width: 70px;
+    height: 70px;
+    position: relative;
+    margin-top: 6px;
+}
+
+/* Planet-specific styles */
+#mercury-3d { background: linear-gradient(45deg, #8c8c8c, #b8b8b8); }
+#venus-3d { background: linear-gradient(45deg, #e6b800, #ffcc00); }
+#earth-3d { background: linear-gradient(45deg, #0066cc, #00cc66); }
+#mars-3d { background: linear-gradient(45deg, #cc3300, #ff6600); }
+#jupiter-3d { background: linear-gradient(45deg, #cc6600, #ff9933); }
+#saturn-3d { background: linear-gradient(45deg, #b38600, #ffd11a); }
+#uranus-3d { background: linear-gradient(45deg, #00cccc, #66ffff); }
+#neptune-3d { background: linear-gradient(45deg, #0066cc, #3399ff); }
+
+@keyframes planetRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.planet-3d {
+    animation: planetRotate 20s linear infinite;
+    border-radius: 50%;
+    box-shadow: inset -15px -15px 25px rgba(0,0,0,.5);
+    background-size: cover;
+    position: relative;
+}
+
+.planet-3d:hover {
+    animation-play-state: paused;
+} 

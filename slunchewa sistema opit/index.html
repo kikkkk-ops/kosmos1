@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Слънчевата система | Интерактивно пътешествие</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.min.js"></script>
+    <script src="three-system.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+    <!-- Нов екран за зареждане -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <div class="sun"></div>
+            <div class="orbit orbit-1">
+                <div class="planet planet-1"></div>
+            </div>
+            <div class="orbit orbit-2">
+                <div class="planet planet-2"></div>
+            </div>
+            <div class="orbit orbit-3">
+                <div class="planet planet-3"></div>
+            </div>
+        </div>
+        <div class="loading-text">Зареждане...</div>
+        <div class="loading-progress">
+            <div class="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- Хедър с навигация -->
+    <header>
+        <div class="logo">
+            <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+            <span class="logo-text">КОСМОС<span class="accent">ЕКСПЛОРЪР</span></span>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="#home">НАЧАЛО</a></li>
+                <li><a href="#solar-system">СЛЪНЧЕВА СИСТЕМА</a></li>
+                <li><a href="#planets">ПЛАНЕТИ</a></li>
+                <li><a href="#satellites">СПЪТНИЦИ</a></li>
+                <li><a href="#dwarf-planets">ДЖУДЖЕТА</a></li>
+                <li><a href="#comets">КОМЕТИ</a></li>
+                <li><a href="#anomalies">АНОМАЛИИ</a></li>
+                <li><a href="#exploration">ИЗСЛЕДВАНЕ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Начална секция с паралакс -->
+    <section id="home" class="hero-section">
+        <div class="parallax-bg stars-bg" data-speed="-0.1"></div>
+        <div class="parallax-bg planets-bg" data-speed="-0.2"></div>
+        <div class="parallax-bg nebula-bg" data-speed="-0.3"></div>
+        
+        <div class="hero-content">
+            <h1 class="glitch-text" data-text="СЛЪНЧЕВАТА СИСТЕМА">СЛЪНЧЕВАТА СИСТЕМА</h1>
+            <p class="subtitle">Интерактивно пътешествие през космическото пространство</p>
+            <div class="hero-buttons">
+                <button id="exploreBtn" class="btn btn-primary">
+                    <span class="btn-icon"><i class="fas fa-space-shuttle"></i></span>
+                    <span class="btn-text">Изследвай</span>
+                </button>
+                <button id="learnMoreBtn" class="btn btn-secondary">
+                    <span class="btn-icon"><i class="fas fa-book-open"></i></span>
+                    <span class="btn-text">Научи повече</span>
+                </button>
+            </div>
+            <div class="scroll-indicator">
+                <span></span>
+                <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция за 3D визуализация на Слънчевата система -->
+    <section id="solar-system" class="system-section">
+        <div class="section-header">
+            <h2 class="section-title">Интерактивна Слънчева система</h2>
+            <p class="section-subtitle">Изследвай 3D модел на нашата Слънчева система</p>
+        </div>
+        
+        <div class="system-controls">
+            <div class="control-group">
+                <button class="control-btn" id="zoomInBtn"><i class="fas fa-search-plus"></i></button>
+                <button class="control-btn" id="zoomOutBtn"><i class="fas fa-search-minus"></i></button>
+            </div>
+            <div class="control-group">
+                <button class="control-btn" id="resetViewBtn"><i class="fas fa-sync"></i></button>
+                <button class="control-btn" id="toggleOrbitsBtn"><i class="fas fa-circle-notch"></i></button>
+            </div>
+            <div class="control-group">
+                <button class="control-btn" id="speedUpBtn"><i class="fas fa-forward"></i></button>
+                <button class="control-btn" id="speedDownBtn"><i class="fas fa-backward"></i></button>
+                <button class="control-btn" id="pauseBtn"><i class="fas fa-pause"></i></button>
+            </div>
+        </div>
+        
+        <div class="system-canvas">
+            <canvas id="solarSystemCanvas"></canvas>
+        </div>
+        
+        <div class="system-info">
+            <div class="info-card">
+                <h3>Текуща позиция</h3>
+                <div id="currentPosition">Слънчева система</div>
+            </div>
+            <div class="info-card">
+                <h3>Мащаб</h3>
+                <div id="currentScale">1:1000000</div>
+            </div>
+            <div class="info-card">
+                <h3>Скорост</h3>
+                <div id="currentSpeed">1x</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция за планетите -->
+    <section id="sun-and-planets" class="planets-section">
+        <div class="section-header">
+            <h2 class="section-title">Слънцето и планетите в нашата Слънчева система</h2>
+            <p class="section-subtitle">Изследвай Слънцето и осемте планети с техните уникални характеристики</p>
+        </div>
+        
+        <div class="planet-navigation">
+            <div class="planet-nav-item active" data-planet="sun">
+                <div class="planet-link">
+                    <div class="planet-icon sun-icon"></div>
+                    <span>Слънце</span>
+                </div>
+            </div>
+            <div class="planet-nav-item" data-planet="mercury">
+                <div class="planet-link">
+                <div class="planet-icon mercury-icon"></div>
+                <span>Меркурий</span>
+                </div>
+            </div>
+            <div class="planet-nav-item" data-planet="venus">
+                <div class="planet-link">
+                <div class="planet-icon venus-icon"></div>
+                <span>Венера</span>
+                </div>
+            </div>
+            <div class="planet-nav-item" data-planet="earth">
+                <div class="planet-link">
+                <div class="planet-icon earth-icon"></div>
+                <span>Земя</span>
+                </div>
+            </div>
+            <div class="planet-nav-item" data-planet="mars">
+                <div class="planet-link">
+                <div class="planet-icon mars-icon"></div>
+                <span>Марс</span>
+                </div>
+            </div>
+            <div class="planet-nav-item" data-planet="jupiter">
+                <div class="planet-link">
+                <div class="planet-icon jupiter-icon"></div>
+                <span>Юпитер</span>
+                </div>
+            </div>
+            <div class="planet-nav-item" data-planet="saturn">
+                <div class="planet-link">
+                <div class="planet-icon saturn-icon"></div>
+                <span>Сатурн</span>
+                </div>
+            </div>
+            <div class="planet-nav-item" data-planet="uranus">
+                <div class="planet-link">
+                <div class="planet-icon uranus-icon"></div>
+                <span>Уран</span>
+                </div>
+            </div>
+            <div class="planet-nav-item" data-planet="neptune">
+                <div class="planet-link">
+                <div class="planet-icon neptune-icon"></div>
+                <span>Нептун</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="planet-details-container">
+            <!-- Слънце -->
+            <div id="sun-detail" class="planet-detail active">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <div class="planet-3d" id="sun-3d"></div>
+                    </div>
+                    <div class="planet-basic-info">
+                        <h3>Слънце</h3>
+                        <div class="planet-facts">
+                            <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Звезда (жълто джудже, G2V)</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">1,392,700 км</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Маса:</span>
+                                <span class="fact-value">1.989 × 10^30 кг</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Повърхностна температура:</span>
+                                <span class="fact-value">5,500°C</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Възраст:</span>
+                                <span class="fact-value">4.6 милиарда години</span>
+                            </div>
+                        </div>
+                        <div class="planet-description">
+                            <p>Слънцето е звездата в центъра на нашата Слънчева система. То съдържа 99.86% от масата на системата и е основният източник на енергия за живота на Земята.</p>
+                        </div>
+                        <div class="planet-links">
+                            <a href="C:\Users\nickk\OneDrive\Desktop\kikoshefa\kosmos\solar\slunce\index (1).html" class="btn btn-primary">
+                                <span class="btn-icon"><i class="fas fa-info-circle"></i></span>
+                                <span class="btn-text">Научи повече</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Меркурий -->
+            <div id="mercury-detail" class="planet-detail">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <img src="../solar/images/mercury.png" alt="Меркурий" class="planet-image">
+                        <div class="planet-3d" id="mercury-3d"></div>
+                    </div>
+                    <div class="planet-basic-info">
+                        <h3>Меркурий</h3>
+                        <div class="planet-facts">
+                            <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Земноподобна планета</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">4,879 км</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Маса:</span>
+                                <span class="fact-value">3.3011 × 10^23 кг</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Разстояние от Слънцето:</span>
+                                <span class="fact-value">57.9 милиона км</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Орбитален период:</span>
+                                <span class="fact-value">88 земни дни</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Ротационен период:</span>
+                                <span class="fact-value">58.6 земни дни</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Средна температура:</span>
+                                <span class="fact-value">167°C (от -173°C до 427°C)</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Брой спътници:</span>
+                                <span class="fact-value">0</span>
+                            </div>
+                        </div>
+                        <a href="../solar/merkuriy/index.html" class="learn-more-btn btn btn-primary">
+                            <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <span class="btn-text">Научи повече за Меркурий</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="planet-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="mercury-overview">Общ преглед</button>
+                        <button class="tab-btn" data-tab="mercury-structure">Структура</button>
+                        <button class="tab-btn" data-tab="mercury-surface">Повърхност</button>
+                        <button class="tab-btn" data-tab="mercury-atmosphere">Атмосфера</button>
+                        <button class="tab-btn" data-tab="mercury-exploration">Изследване</button>
+                        <button class="tab-btn" data-tab="mercury-facts">Интересни факти</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div id="mercury-overview" class="tab-pane active">
+                            <h4>Общ преглед на Меркурий</h4>
+                            <p>Меркурий е най-малката и най-близката до Слънцето планета в Слънчевата система. Тя е наречена на римския бог на търговията, Меркурий, който също е известен като пратеник на боговете.</p>
+                            <p>Поради близостта си до Слънцето, Меркурий е трудно да се наблюдава от Земята и може да се види само сутрин преди изгрев или вечер след залез. Меркурий няма естествени спътници и има много тънка атмосфера, съставена предимно от атоми, изхвърлени от повърхността на планетата от слънчевия вятър.</p>
+                            <p>Меркурий има най-ексцентричната орбита от всички планети в Слънчевата система и най-малкия наклон на оста. Той прави три ротации около оста си за всеки две обиколки около Слънцето, което означава, че един слънчев ден на Меркурий (от един изгрев до следващия) е равен на 176 земни дни.</p>
+                            <div class="image-gallery">
+                                
+                            </div>
+                        </div>
+                        
+                        <div id="mercury-structure" class="tab-pane">
+                            <h4>Вътрешна структура на Меркурий</h4>
+                            <p>Меркурий има необичайно голямо метално ядро, което съставлява около 60% от масата на планетата. Това е много по-голям процент, отколкото при другите земноподобни планети.</p>
+                            <p>Структурата на Меркурий може да се раздели на следните слоеве:</p>
+                            <ul>
+                                <li><strong>Ядро:</strong> Радиусът на ядрото е приблизително 1,800 км. Смята се, че ядрото е съставено предимно от желязо и никел и е частично течно.</li>
+                                <li><strong>Мантия:</strong> Мантията на Меркурий е дебела около 500-700 км и е съставена предимно от силикатни материали.</li>
+                                <li><strong>Кора:</strong> Кората на Меркурий е тънка, с дебелина между 100-300 км.</li>
+                            </ul>
+                            <p>Учените смятат, че необичайно голямото ядро на Меркурий може да се дължи на гигантски сблъсък в ранната история на планетата, който е отнесъл голяма част от първоначалната мантия и кора.</p>
+                          
+                        </div>
+                        
+                        <div id="mercury-surface" class="tab-pane">
+                            <h4>Повърхност на Меркурий</h4>
+                            <p>Повърхността на Меркурий наподобява тази на Луната, с множество кратери от метеоритни удари. Тя е покрита с обширни равнини и е силно набраздена от тектонични разломи, някои от които са дълги стотици километри и високи до 3 км.</p>
+                            <p>Основните характеристики на повърхността включват:</p>
+                            <ul>
+                                <li><strong>Кратери:</strong> Повърхността е осеяна с кратери с различни размери. Най-големият кратер, Калорис (Caloris Basin), е с диаметър около 1,550 км.</li>
+                                <li><strong>Равнини:</strong> Обширни равнини, подобни на лунните "морета", покриват части от повърхността.</li>
+                                <li><strong>Ескарпи:</strong> Гигантски стъпаловидни скални образувания, някои от които са дълги стотици километри.</li>
+                                <li><strong>Долини и хребети:</strong> Повърхността е набраздена от множество долини и хребети, формирани от тектонична активност.</li>
+                            </ul>
+                            <p>Поради липсата на атмосфера, повърхността на Меркурий е изложена директно на слънчевата радиация и микрометеорити, което води до постоянна ерозия и промяна.</p>
+                            <div class="image-gallery">
+                               
+                            </div>
+                        </div>
+                        
+                        <div id="mercury-atmosphere" class="tab-pane">
+                            <h4>Атмосфера на Меркурий</h4>
+                            <p>Меркурий има изключително тънка атмосфера, която се нарича екзосфера. Тя е толкова разредена, че се счита почти за вакуум. Налягането на повърхността е по-малко от една трилионна част от земното атмосферно налягане.</p>
+                            <p>Съставът на екзосферата включва:</p>
+                            <ul>
+                                <li>Кислород (O)</li>
+                                <li>Натрий (Na)</li>
+                                <li>Водород (H)</li>
+                                <li>Хелий (He)</li>
+                                <li>Калий (K)</li>
+                                <li>Калций (Ca)</li>
+                                <li>Магнезий (Mg)</li>
+                            </ul>
+                            <p>Тези елементи идват от различни източници, включително слънчевия вятър, радиоактивното разпадане на елементи в кората на Меркурий и микрометеоритни удари.</p>
+                            <p>Поради изключително тънката атмосфера, на повърхността на Меркурий има екстремни температурни разлики. През деня температурата може да достигне до 427°C, а през нощта да падне до -173°C.</p>
+                           
+                        </div>
+                        
+                        <div id="mercury-exploration" class="tab-pane">
+                            <h4>Изследване на Меркурий</h4>
+                            <p>Поради близостта си до Слънцето, Меркурий е трудна планета за изследване. Досега само две космически мисии са посетили планетата:</p>
+                            <div class="mission-timeline">
+                                <div class="mission">
+                                    <div class="mission-year">1974-1975</div>
+                                    <div class="mission-content">
+                                        <h5>Маринър 10 (Mariner 10)</h5>
+                                        <p>Първият космически апарат, който посети Меркурий. Той направи три прелитания покрай планетата и картографира около 45% от повърхността.</p>
+                                        
+                                    </div>
+                                </div>
+                                <div class="mission">
+                                    <div class="mission-year">2004-2015</div>
+                                    <div class="mission-content">
+                                        <h5>МЕСИНДЖЪР (MESSENGER)</h5>
+                                        <p>Космическият апарат MESSENGER (MErcury Surface, Space ENvironment, GEochemistry, and Ranging) беше изстрелян през 2004 г. и влезе в орбита около Меркурий през 2011 г. Той картографира цялата повърхност на планетата и събра ценни данни за нейния състав, геология и магнитно поле.</p>
+                                        
+                                    </div>
+                                </div>
+                                <div class="mission">
+                                    <div class="mission-year">2018-настояще</div>
+                                    <div class="mission-content">
+                                        <h5>БепиКоломбо (BepiColombo)</h5>
+                                        <p>Съвместна мисия на Европейската космическа агенция (ESA) и Японската агенция за аерокосмически изследвания (JAXA). Изстреляна през 2018 г., мисията се очаква да достигне Меркурий през 2025 г. Тя се състои от два орбитални апарата, които ще изучават повърхността, вътрешността и магнитосферата на планетата.</p>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Бъдещите мисии до Меркурий ще помогнат на учените да разберат по-добре формирането и еволюцията на земноподобните планети в Слънчевата система.</p>
+                        </div>
+                        
+                        <div id="mercury-facts" class="tab-pane">
+                            <h4>Интересни факти за Меркурий</h4>
+                            <div class="facts-grid">
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-temperature-high"></i></div>
+                                    <h5>Екстремни температури</h5>
+                                    <p>Меркурий има най-големите температурни разлики в Слънчевата система - от 427°C през деня до -173°C през нощта.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-calendar-day"></i></div>
+                                    <h5>Странен ден</h5>
+                                    <p>Един ден на Меркурий (от изгрев до изгрев) продължава 176 земни дни, което е два пъти по-дълго от годината му (88 земни дни).</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-magnet"></i></div>
+                                    <h5>Магнитно поле</h5>
+                                    <p>Въпреки малкия си размер, Меркурий има магнитно поле, което е около 1% от силата на земното.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-mountain"></i></div>
+                                    <h5>Най-големият кратер</h5>
+                                    <p>Кратерът Калорис на Меркурий е толкова голям, че ако бъде поставен на Земята, ще покрие разстоянието от Лондон до Прага.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-ice-cream"></i></div>
+                                    <h5>Лед на полюсите</h5>
+                                    <p>Въпреки близостта до Слънцето, на полюсите на Меркурий има постоянно засенчени кратери, които съдържат воден лед.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-meteor"></i></div>
+                                    <h5>Свиваща се планета</h5>
+                                    <p>Меркурий се е свил с около 14 км в диаметър през последните 4 милиарда години поради охлаждането на ядрото.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-atom"></i></div>
+                                    <h5>Голямо ядро</h5>
+                                    <p>Ядрото на Меркурий съставлява около 60% от обема на планетата, което е много повече от другите земноподобни планети.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-sun"></i></div>
+                                    <h5>Видим от Земята</h5>
+                                    <p>Меркурий е една от петте планети, видими с невъоръжено око от Земята, но е трудно да се наблюдава поради близостта си до Слънцето.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Венера -->
+            <div id="venus-detail" class="planet-detail">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <img src="../solar/images/venus.png" alt="Венера" class="planet-image">
+                        <div class="planet-3d" id="venus-3d"></div>
+                    </div>
+                    <div class="planet-basic-info">
+                        <h3>Венера</h3>
+                        <div class="planet-facts">
+                            <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Земноподобна планета</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">12,104 км</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Маса:</span>
+                                <span class="fact-value">4.8675 × 10^24 кг</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Разстояние от Слънцето:</span>
+                                <span class="fact-value">108.2 милиона км</span>
+                            </div>
+                            </div>
+                        <a href="../solar/venera/index.html" class="learn-more-btn btn btn-primary">
+                            <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <span class="btn-text">Научи повече за Венера</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="planet-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="venus-overview">Общ преглед</button>
+                        <button class="tab-btn" data-tab="venus-structure">Структура</button>
+                        <button class="tab-btn" data-tab="venus-surface">Повърхност</button>
+                        <button class="tab-btn" data-tab="venus-atmosphere">Атмосфера</button>
+                        <button class="tab-btn" data-tab="venus-exploration">Изследване</button>
+                        <button class="tab-btn" data-tab="venus-facts">Интересни факти</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div id="venus-overview" class="tab-pane active">
+                            <h4>Общ преглед на Венера</h4>
+                            <p>Венера е втората планета от Слънчевата система и често се нарича "сестра на Земята" поради сходния размер и маса. Въпреки това, условията на повърхността ѝ са екстремни, с температури достигащи 462°C.</p>
+                        </div>
+                        
+                        <div id="venus-structure" class="tab-pane">
+                            <h4>Структура на Венера</h4>
+                            <p>Венера има структура, подобна на земната, с желязно ядро, скалиста мантия и кора. Ядрото е частично течно и генерира слабо магнитно поле. Планетата има активна вулканична дейност, която постоянно преобразува повърхността ѝ.</p>
+                        </div>
+                        
+                        <div id="venus-surface" class="tab-pane">
+                            <h4>Повърхност на Венера</h4>
+                            <p>Повърхността на Венера е покрита с обширни равнини от вулканични скали, планински вериги и множество вулкани. Най-високата точка е планината Максуел, която се издига на 11 км над средното ниво на повърхността. Температурата на повърхността е достатъчно висока, за да разтопи олово.</p>
+                        </div>
+                        
+                        <div id="venus-atmosphere" class="tab-pane">
+                            <h4>Атмосфера на Венера</h4>
+                            <p>Венера има най-плътната атмосфера от всички земноподобни планети, съставена предимно от въглероден диоксид (96.5%) и азот (3.5%). Атмосферното налягане на повърхността е 90 пъти по-голямо от земното. Плътните облаци от сярна киселина създават мощен парников ефект, който води до екстремно високи температури.</p>
+                        </div>
+                        
+                        <div id="venus-exploration" class="tab-pane">
+                            <h4>Изследване на Венера</h4>
+                            <p>Венера е била цел на множество космически мисии. Съветската програма "Венера" успешно кацна няколко сонди на повърхността, които изпратиха първите снимки. НАСА изпрати мисията "Магелан", която картографира 98% от повърхността с радар. Европейската космическа агенция изследва атмосферата с "Венера Експрес", а Япония - с "Акацуки".</p>
+                        </div>
+                        
+                        <div id="venus-facts" class="tab-pane">
+                            <h4>Интересни факти за Венера</h4>
+                            <div class="facts-grid">
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-sync"></i></div>
+                                    <h5>Обратно въртене</h5>
+                                    <p>Венера се върти около оста си в посока, обратна на повечето планети - от изток на запад.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-temperature-high"></i></div>
+                                    <h5>Най-гореща планета</h5>
+                                    <p>Въпреки че Меркурий е по-близо до Слънцето, Венера е най-горещата планета поради парниковия ефект.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-clock"></i></div>
+                                    <h5>Дълъг ден</h5>
+                                    <p>Един ден на Венера (243 земни дни) е по-дълъг от една венерианска година (225 земни дни).</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-satellite"></i></div>
+                                    <h5>Без спътници</h5>
+                                    <p>Венера е единствената планета в Слънчевата система без естествени спътници, освен Меркурий.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-cloud"></i></div>
+                                    <h5>Токсични облаци</h5>
+                                    <p>Облаците на Венера съдържат капки от сярна киселина, което прави атмосферата изключително корозивна.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-mountain"></i></div>
+                                    <h5>Вулканична активност</h5>
+                                    <p>На Венера има над 1600 големи вулкана, като някои от тях вероятно са все още активни.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-star"></i></div>
+                                    <h5>Най-ярката планета</h5>
+                                    <p>Венера е най-ярката планета, видима от Земята, и понякога може да хвърля сянка през нощта.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-compress-arrows-alt"></i></div>
+                                    <h5>Екстремно налягане</h5>
+                                    <p>Атмосферното налягане на повърхността на Венера е еквивалентно на налягането на 900 метра под водата на Земята.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Земя -->
+            <div id="earth-detail" class="planet-detail">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <img src="../solar/images/earth.png" alt="Земя" class="planet-image">
+                        <div class="planet-3d" id="earth-3d"></div>
+            </div>
+                    <div class="planet-basic-info">
+                        <h3>Земя</h3>
+                        <div class="planet-facts">
+                            <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Земноподобна планета</span>
+            </div>
+                            <div class="fact">
+                                <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">12,742 км</span>
+            </div>
+                            <div class="fact">
+                                <span class="fact-label">Маса:</span>
+                                <span class="fact-value">5.97 × 10^24 кг</span>
+            </div>
+                            <div class="fact">
+                                <span class="fact-label">Разстояние от Слънцето:</span>
+                                <span class="fact-value">149.6 милиона км</span>
+            </div>
+            </div>
+                        <a href="C:\Users\nickk\OneDrive\Desktop\kikoshefa\kosmos\solar\zemya\index.html" class="learn-more-btn btn btn-primary">
+                            <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <span class="btn-text">Научи повече за Земята</span>
+                        </a>
+        </div>
+                </div>
+
+                <div class="planet-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="earth-overview">Общ преглед</button>
+                        <button class="tab-btn" data-tab="earth-structure">Структура</button>
+                        <button class="tab-btn" data-tab="earth-surface">Повърхност</button>
+                        <button class="tab-btn" data-tab="earth-atmosphere">Атмосфера</button>
+                        <button class="tab-btn" data-tab="earth-life">Живот</button>
+                        <button class="tab-btn" data-tab="earth-facts">Интересни факти</button>
+        </div>
+        
+                    <div class="tab-content">
+                        <div id="earth-overview" class="tab-pane active">
+                            <h4>Общ преглед на Земята</h4>
+                            <p>Земята е третата планета от Слънцето и единствената известна планета, на която съществува живот. Тя е най-плътната планета в Слънчевата система и най-голямата от четирите земноподобни планети.</p>
+        </div>
+        
+                        <div id="earth-structure" class="tab-pane">
+                            <h4>Структура на Земята</h4>
+                            <p>Земята има сложна вътрешна структура, състояща се от няколко слоя:</p>
+                            <ul>
+                                <li><strong>Вътрешно ядро:</strong> Твърда сфера от желязо и никел с температура около 5400°C</li>
+                                <li><strong>Външно ядро:</strong> Течен слой от разтопени метали, създаващ магнитното поле на Земята</li>
+                                <li><strong>Мантия:</strong> Най-дебелият слой, съставен от силикатни скали</li>
+                                <li><strong>Кора:</strong> Тънък, твърд външен слой, където живеем ние</li>
+                            </ul>
+                </div>
+                        
+                        <div id="earth-surface" class="tab-pane">
+                            <h4>Повърхност на Земята</h4>
+                            <p>Земната повърхност е изключително разнообразна, включваща:</p>
+                            <ul>
+                                <li>71% водна повърхност (океани и морета)</li>
+                                <li>29% сушева повърхност (континенти и острови)</li>
+                                <li>Планински вериги и дълбоки океански падини</li>
+                                <li>Вулкани, пустини, гори и ледници</li>
+                            </ul>
+                </div>
+                        
+                        <div id="earth-atmosphere" class="tab-pane">
+                            <h4>Атмосфера на Земята</h4>
+                            <p>Земната атмосфера е съставена от:</p>
+                            <ul>
+                                <li>78% азот</li>
+                                <li>21% кислород</li>
+                                <li>1% други газове (аргон, въглероден диоксид и др.)</li>
+                            </ul>
+                            <p>Атмосферът защитава живота на Земята от вредната слънчева радиация и поддържа температурата на планетата.</p>
+            </div>
+            
+                        <div id="earth-life" class="tab-pane">
+                            <h4>Живот на Земята</h4>
+                            <p>Земята е единствената известна планета, на която съществува живот. Биосферата включва:</p>
+                            <ul>
+                                <li>Милиони различни видове организми</li>
+                                <li>Разнообразни екосистеми</li>
+                                <li>Сложни хранителни вериги</li>
+                                <li>Интелигентен живот (хората)</li>
+                            </ul>
+            </div>
+            
+                        <div id="earth-facts" class="tab-pane">
+                            <h4>Интересни факти за Земята</h4>
+                            <div class="facts-grid">
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-globe"></i></div>
+                                    <h5>Уникална планета</h5>
+                                    <p>Единствената известна планета с течна вода на повърхността и живот.</p>
+                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-moon"></i></div>
+                                    <h5>Един естествен спътник</h5>
+                                    <p>Луната е единственият естествен спътник на Земята и влияе на приливите и отливите.</p>
+                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-mountain"></i></div>
+                                    <h5>Най-висока точка</h5>
+                                    <p>Връх Еверест е най-високата точка над морското равнище (8848 м).</p>
+            </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-water"></i></div>
+                                    <h5>Най-дълбока точка</h5>
+                                    <p>Марианската падина е най-дълбоката точка в океана (11034 м).</p>
+                </div>
+                </div>
+            </div>
+                </div>
+                </div>
+            </div>
+            
+            <!-- Марс -->
+            <div id="mars-detail" class="planet-detail">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <img src="../solar/images/mars.png" alt="Марс" class="planet-image">
+                        <div class="planet-3d" id="mars-3d"></div>
+                </div>
+                    <div class="planet-basic-info">
+                        <h3>Марс</h3>
+                        <div class="planet-facts">
+                            <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Земноподобна планета</span>
+                </div>
+                            <div class="fact">
+                                <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">6,779 км</span>
+            </div>
+                            <div class="fact">
+                                <span class="fact-label">Маса:</span>
+                                <span class="fact-value">6.39 × 10^23 кг</span>
+                </div>
+                            <div class="fact">
+                                <span class="fact-label">Разстояние от Слънцето:</span>
+                                <span class="fact-value">227.9 милиона км</span>
+                </div>
+            </div>
+                        <a href="../solar/mars/index.html" class="learn-more-btn btn btn-primary">
+                            <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <span class="btn-text">Научи повече за Марс</span>
+                        </a>
+                </div>
+                </div>
+
+                <div class="planet-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="mars-overview">Общ преглед</button>
+                        <button class="tab-btn" data-tab="mars-structure">Структура</button>
+                        <button class="tab-btn" data-tab="mars-surface">Повърхност</button>
+                        <button class="tab-btn" data-tab="mars-atmosphere">Атмосфера</button>
+                        <button class="tab-btn" data-tab="mars-moons">Спътници</button>
+                        <button class="tab-btn" data-tab="mars-exploration">Изследване</button>
+            </div>
+            
+                    <div class="tab-content">
+                        <div id="mars-overview" class="tab-pane active">
+                            <h4>Общ преглед на Марс</h4>
+                            <p>Марс е четвъртата планета от Слънцето и често се нарича "Червената планета" поради характерния си цвят, причинен от железния оксид (ръжда) на повърхността. Марс е една от най-изследваните планети поради потенциала си за бъдещо човешко заселване.</p>
+                </div>
+                        
+                        <div id="mars-structure" class="tab-pane">
+                            <h4>Структура на Марс</h4>
+                            <p>Марс има подобна на Земята вътрешна структура:</p>
+                            <ul>
+                                <li><strong>Ядро:</strong> Частично течно желязно ядро с радиус около 1800 км</li>
+                                <li><strong>Мантия:</strong> Силикатна мантия, богата на желязо</li>
+                                <li><strong>Кора:</strong> Тънка кора с дебелина между 10 и 50 км</li>
+                            </ul>
+                </div>
+                        
+                        <div id="mars-surface" class="tab-pane">
+                            <h4>Повърхност на Марс</h4>
+                            <p>Марсианската повърхност има множество забележителни характеристики:</p>
+                            <ul>
+                                <li>Олимп - най-високият вулкан в Слънчевата система (21.9 км)</li>
+                                <li>Валес Маринерис - най-големият каньон (4000 км дължина)</li>
+                                <li>Полярни шапки от воден лед и замръзнал въглероден диоксид</li>
+                                <li>Древни речни корита и долини, показващи наличие на течна вода в миналото</li>
+                            </ul>
+            </div>
+            
+                        <div id="mars-atmosphere" class="tab-pane">
+                            <h4>Атмосфера на Марс</h4>
+                            <p>Марс има тънка атмосфера, съставена от:</p>
+                            <ul>
+                                <li>95.3% въглероден диоксид</li>
+                                <li>2.7% азот</li>
+                                <li>1.6% аргон</li>
+                                <li>0.4% други газове</li>
+                            </ul>
+                            <p>Атмосферното налягане е по-малко от 1% от земното, но е достатъчно да поддържа големи прашни бури.</p>
+                </div>
+                        
+                        <div id="mars-moons" class="tab-pane">
+                            <h4>Спътници на Марс</h4>
+                            <p>Марс има два малки естествени спътника:</p>
+                            <ul>
+                                <li><strong>Фобос:</strong> По-големият спътник, с диаметър 22.2 км</li>
+                                <li><strong>Деймос:</strong> По-малкият спътник, с диаметър 12.6 км</li>
+                            </ul>
+                            <p>И двата спътника са вероятно заловени астероиди и имат неправилна форма.</p>
+        </div>
+        
+                        <div id="mars-exploration" class="tab-pane">
+                            <h4>Изследване на Марс</h4>
+                            <p>Марс е най-изследваната планета след Земята. Ключови мисии включват:</p>
+                            <ul>
+                                <li>Viking 1 и 2 (1975) - първите успешни спускаеми апарати</li>
+                                <li>Mars Pathfinder (1997) - първият успешен марсоход</li>
+                                <li>Spirit и Opportunity (2004) - дългогодишни марсоходи</li>
+                                <li>Curiosity (2012) - изследва кратера Гейл</li>
+                                <li>Perseverance (2021) - търси следи от древен живот</li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+        </div>
+        
+            <!-- Юпитер -->
+            <div id="jupiter-detail" class="planet-detail">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <img src="../solar/images/jupiter.png" alt="Юпитер" class="planet-image">
+                        <div class="planet-3d" id="jupiter-3d"></div>
+                </div>
+                    <div class="planet-basic-info">
+                        <h3>Юпитер</h3>
+                        <div class="planet-facts">
+                            <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Газов гигант</span>
+                            </div>
+                        <div class="fact">
+                            <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">139,820 км</span>
+                        </div>
+                        <div class="fact">
+                            <span class="fact-label">Маса:</span>
+                                <span class="fact-value">1.898 × 10^27 кг</span>
+                        </div>
+                        <div class="fact">
+                                <span class="fact-label">Разстояние от Слънцето:</span>
+                                <span class="fact-value">778.5 милиона км</span>
+                        </div>
+                        </div>
+                        <a href="../solar/jupiter/index.html" class="learn-more-btn btn btn-primary">
+                            <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <span class="btn-text">Научи повече за Юпитер</span>
+                        </a>
+                        </div>
+                        </div>
+
+                <div class="planet-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="jupiter-overview">Общ преглед</button>
+                        <button class="tab-btn" data-tab="jupiter-structure">Структура</button>
+                        <button class="tab-btn" data-tab="jupiter-atmosphere">Атмосфера</button>
+                        <button class="tab-btn" data-tab="jupiter-moons">Спътници</button>
+                        <button class="tab-btn" data-tab="jupiter-rings">Пръстени</button>
+                        <button class="tab-btn" data-tab="jupiter-facts">Интересни факти</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div id="jupiter-overview" class="tab-pane active">
+                            <h4>Общ преглед на Юпитер</h4>
+                            <p>Юпитер е най-голямата планета в Слънчевата система и първият от газовите гиганти. Той има повече от два пъти по-голяма маса от всички други планети взети заедно.</p>
+            </div>
+            
+                        <div id="jupiter-structure" class="tab-pane">
+                            <h4>Структура на Юпитер</h4>
+                            <p>Юпитер е газов гигант със следната структура:</p>
+                            <ul>
+                                <li><strong>Ядро:</strong> Малко, но масивно ядро от скали и метали</li>
+                                <li><strong>Метален водород:</strong> Слой от водород под такова налягане, че се държи като метал</li>
+                                <li><strong>Течен водород:</strong> Основната част от планетата</li>
+                                <li><strong>Атмосфера:</strong> Горен слой от газове, предимно водород и хелий</li>
+                </ul>
+                </div>
+                
+                        <div id="jupiter-atmosphere" class="tab-pane">
+                            <h4>Атмосфера на Юпитер</h4>
+                            <p>Атмосферата на Юпитер е най-голямата планетарна атмосфера в Слънчевата система. Тя се състои от:</p>
+                            <ul>
+                                <li>90% водород</li>
+                                <li>10% хелий</li>
+                                <li>Малки количества метан, амоняк и други съединения</li>
+                </ul>
+                            <p>Най-известната характеристика на атмосферата е Голямото червено петно - гигантска буря, която съществува от поне 400 години.</p>
+                        </div>
+                        
+                        <div id="jupiter-moons" class="tab-pane">
+                            <h4>Спътници на Юпитер</h4>
+                            <p>Юпитер има най-много спътници в Слънчевата система - 95 потвърдени. Най-известни са четирите Галилееви спътника:</p>
+                            <ul>
+                                <li><strong>Йо:</strong> Най-вулканично активното тяло в Слънчевата система</li>
+                                <li><strong>Европа:</strong> Има ледена повърхност и вероятно подповърхностен океан</li>
+                                <li><strong>Ганимед:</strong> Най-големият спътник в Слънчевата система</li>
+                                <li><strong>Калисто:</strong> Покрит с кратери и един от най-старите обекти</li>
+                </ul>
+                        </div>
+                        
+                        <div id="jupiter-rings" class="tab-pane">
+                            <h4>Пръстени на Юпитер</h4>
+                            <p>Юпитер има слаба система от пръстени, открита през 1979 г. от Вояджър 1. Пръстените са съставени от прах и малки частици и са много по-неясни от тези на Сатурн.</p>
+                        </div>
+                        
+                        <div id="jupiter-facts" class="tab-pane">
+                            <h4>Интересни факти за Юпитер</h4>
+                <div class="facts-grid">
+                    <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-weight"></i></div>
+                                    <h5>Масивен гигант</h5>
+                                    <p>Юпитер е толкова голям, че всички други планети биха могли да се поберат в него.</p>
+                    </div>
+                    <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-wind"></i></div>
+                                    <h5>Бързо въртене</h5>
+                                    <p>Въпреки размера си, Юпитер се върти най-бързо от всички планети - един ден трае само 10 часа.</p>
+                    </div>
+                    <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-hurricane"></i></div>
+                                    <h5>Голямото червено петно</h5>
+                                    <p>Тази гигантска буря е достатъчно голяма, за да побере три Земи.</p>
+                    </div>
+                    <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-satellite"></i></div>
+                                    <h5>Много спътници</h5>
+                                    <p>С 95 известни спътника, Юпитер държи рекорда за най-много спътници.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+                </div>
+        </div>
+        
+            <!-- Сатурн -->
+            <div id="saturn-detail" class="planet-detail">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <img src="../solar/images/saturn.png" alt="Сатурн" class="planet-image">
+                        <div class="planet-3d" id="saturn-3d"></div>
+                </div>
+                    <div class="planet-basic-info">
+                        <h3>Сатурн</h3>
+                        <div class="planet-facts">
+                        <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Газов гигант</span>
+                        </div>
+                        <div class="fact">
+                                <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">116,460 км</span>
+                        </div>
+                        <div class="fact">
+                                <span class="fact-label">Маса:</span>
+                                <span class="fact-value">5.683 × 10^26 кг</span>
+                        </div>
+                        <div class="fact">
+                                <span class="fact-label">Разстояние от Слънцето:</span>
+                                <span class="fact-value">1.434 милиарда км</span>
+                        </div>
+                    </div>
+                        <a href="../solar/saturn/index.html" class="learn-more-btn btn btn-primary">
+                            <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <span class="btn-text">Научи повече за Сатурн</span>
+                        </a>
+                </div>
+            </div>
+            
+                <div class="planet-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="saturn-overview">Общ преглед</button>
+                        <button class="tab-btn" data-tab="saturn-structure">Структура</button>
+                        <button class="tab-btn" data-tab="saturn-atmosphere">Атмосфера</button>
+                        <button class="tab-btn" data-tab="saturn-rings">Пръстени</button>
+                        <button class="tab-btn" data-tab="saturn-moons">Спътници</button>
+                        <button class="tab-btn" data-tab="saturn-facts">Интересни факти</button>
+                </div>
+                    
+                    <div class="tab-content">
+                        <div id="saturn-overview" class="tab-pane active">
+                            <h4>Общ преглед на Сатурн</h4>
+                            <p>Сатурн е шестата планета от Слънцето и втората по големина в Слънчевата система. Той е най-известният със своята впечатляваща система от пръстени, която е видима дори с малък телескоп.</p>
+                        </div>
+                        
+                        <div id="saturn-structure" class="tab-pane">
+                            <h4>Структура на Сатурн</h4>
+                            <p>Подобно на Юпитер, Сатурн е газов гигант със следната структура:</p>
+                            <ul>
+                                <li><strong>Ядро:</strong> Скалисто ядро, обвито от метален водород</li>
+                                <li><strong>Течен водород:</strong> Основната част от планетата</li>
+                                <li><strong>Атмосфера:</strong> Външен слой от водород и хелий</li>
+                            </ul>
+                            <p>Сатурн е единствената планета с плътност по-малка от водата - би могла да плава в достатъчно голям океан.</p>
+                        </div>
+                        
+                        <div id="saturn-atmosphere" class="tab-pane">
+                            <h4>Атмосфера на Сатурн</h4>
+                            <p>Атмосферата на Сатурн се състои от:</p>
+                            <ul>
+                                <li>96% водород</li>
+                                <li>3% хелий</li>
+                                <li>Малки количества метан, амоняк и други съединения</li>
+                            </ul>
+                            <p>В атмосферата се наблюдават силни ветрове и периодични бури, включително шестоъгълен ураган на северния полюс.</p>
+                        </div>
+                        
+                        <div id="saturn-rings" class="tab-pane">
+                            <h4>Пръстени на Сатурн</h4>
+                            <p>Пръстените на Сатурн са най-впечатляващите в Слънчевата система:</p>
+                            <ul>
+                                <li>Съставени са предимно от ледени частици с различни размери</li>
+                                <li>Имат дебелина само около 10 метра</li>
+                                <li>Простират се на повече от 280,000 км от планетата</li>
+                                <li>Разделени са на седем основни пръстена</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="saturn-moons" class="tab-pane">
+                            <h4>Спътници на Сатурн</h4>
+                            <p>Сатурн има 83 потвърдени спътника. Най-забележителните включват:</p>
+                            <ul>
+                                <li><strong>Титан:</strong> Най-големият спътник, с плътна атмосфера и течни метанови езера</li>
+                                <li><strong>Енцелад:</strong> Има ледени гейзери и вероятно подповърхностен океан</li>
+                                <li><strong>Мимас:</strong> Известен с огромния кратер, който му придава прилика със Звездата на смъртта</li>
+                            </ul>
+                    </div>
+                        
+                        <div id="saturn-facts" class="tab-pane">
+                            <h4>Интересни факти за Сатурн</h4>
+                            <div class="facts-grid">
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-ring"></i></div>
+                                    <h5>Впечатляващи пръстени</h5>
+                                    <p>Пръстените на Сатурн са видими от Земята с малък телескоп.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-feather"></i></div>
+                                    <h5>Ниска плътност</h5>
+                                    <p>Единствената планета, която би плавала във вода.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-moon"></i></div>
+                                    <h5>Титан</h5>
+                                    <p>Единственият спътник със собствена плътна атмосфера.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-hexagon"></i></div>
+                                    <h5>Шестоъгълна буря</h5>
+                                    <p>Уникален шестоъгълен ураган на северния полюс.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Уран -->
+            <div id="uranus-detail" class="planet-detail">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <img src="../solar/images/uranus.png" alt="Уран" class="planet-image">
+                        <div class="planet-3d" id="uranus-3d"></div>
+                </div>
+                    <div class="planet-basic-info">
+                        <h3>Уран</h3>
+                        <div class="planet-facts">
+                        <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Леден гигант</span>
+                        </div>
+                        <div class="fact">
+                                <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">50,724 км</span>
+                        </div>
+                        <div class="fact">
+                                <span class="fact-label">Маса:</span>
+                                <span class="fact-value">8.681 × 10^25 кг</span>
+                        </div>
+                        <div class="fact">
+                                <span class="fact-label">Разстояние от Слънцето:</span>
+                                <span class="fact-value">2.871 милиарда км</span>
+                        </div>
+                    </div>
+                        <a href="../solar/uran/index.html" class="learn-more-btn btn btn-primary">
+                            <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <span class="btn-text">Научи повече за Уран</span>
+                        </a>
+                </div>
+            </div>
+
+                <div class="planet-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="uranus-overview">Общ преглед</button>
+                        <button class="tab-btn" data-tab="uranus-structure">Структура</button>
+                        <button class="tab-btn" data-tab="uranus-atmosphere">Атмосфера</button>
+                        <button class="tab-btn" data-tab="uranus-rings">Пръстени</button>
+                        <button class="tab-btn" data-tab="uranus-moons">Спътници</button>
+                        <button class="tab-btn" data-tab="uranus-facts">Интересни факти</button>
+        </div>
+        
+                    <div class="tab-content">
+                        <div id="uranus-overview" class="tab-pane active">
+                            <h4>Общ преглед на Уран</h4>
+                            <p>Уран е седмата планета от Слънцето и първият леден гигант, открит в Слънчевата система. Той е уникален със своя силно наклонен ротационен ъгъл, който го кара да се "търкаля" по орбитата си.</p>
+        </div>
+        
+                        <div id="uranus-structure" class="tab-pane">
+                            <h4>Структура на Уран</h4>
+                            <p>Уран е леден гигант със следната структура:</p>
+                            <ul>
+                                <li><strong>Ядро:</strong> Малко скалисто ядро</li>
+                                <li><strong>Мантия:</strong> Съставена от вода, амоняк и метанов лед</li>
+                                <li><strong>Атмосфера:</strong> Дебел слой от водород, хелий и метан</li>
+                </ul>
+                            <p>Уникалното при Урана е неговият наклон на оста от 98 градуса, което означава, че той се "търкаля" по своята орбита.</p>
+            </div>
+                        
+                        <div id="uranus-atmosphere" class="tab-pane">
+                            <h4>Атмосфера на Уран</h4>
+                            <p>Атмосферата на Уран се състои от:</p>
+                            <ul>
+                                <li>83% водород</li>
+                                <li>15% хелий</li>
+                                <li>2% метан (придава синьо-зеления цвят)</li>
+                            </ul>
+                            <p>Температурата в горните слоеве на атмосферата достига до -224°C, правейки Уран една от най-студените планети.</p>
+        </div>
+        
+                        <div id="uranus-rings" class="tab-pane">
+                            <h4>Пръстени на Уран</h4>
+                            <p>Уран има система от 13 тънки, тъмни пръстена:</p>
+                            <ul>
+                                <li>Открити през 1977 година</li>
+                                <li>Съставени предимно от ледени частици и тъмен прах</li>
+                                <li>Много по-неясни от пръстените на Сатурн</li>
+                            </ul>
+        </div>
+        
+                        <div id="uranus-moons" class="tab-pane">
+                            <h4>Спътници на Уран</h4>
+                            <p>Уран има 27 известни спътника, наименувани на герои от произведенията на Шекспир и Александър Поуп. Най-големите са:</p>
+                            <ul>
+                                <li><strong>Титания:</strong> Най-големият спътник на Уран</li>
+                                <li><strong>Оберон:</strong> Вторият по големина, силно кратериран</li>
+                                <li><strong>Умбриел:</strong> Най-тъмният от големите спътници</li>
+                                <li><strong>Ариел:</strong> Най-светлият и най-младият на вид</li>
+                                <li><strong>Миранда:</strong> Има уникална, разнообразна повърхност</li>
+                </ul>
+            </div>
+                        
+                        <div id="uranus-facts" class="tab-pane">
+            <div class="info-column">
+                <h3>Известни комети</h3>
+                <div class="comet-list">
+                    <div class="comet-item">
+                        <img src="/placeholder.svg?height=100&width=200" alt="Комета Халей">
+                        <div class="comet-item-info">
+                            <h4>Комета Халей</h4>
+                            <p>Най-известната комета, която се връща към вътрешната Слънчева система на всеки 76 години. Последното ѝ появяване беше през 1986 г., а следващото ще бъде през 2061 г.</p>
+                        </div>
+                    </div>
+                    <div class="comet-item">
+                        <img src="/placeholder.svg?height=100&width=200" alt="Комета Хейл-Боп">
+                        <div class="comet-item-info">
+                            <h4>Комета Хейл-Боп</h4>
+                            <p>Една от най-ярките комети, наблюдавани през последните десетилетия. Беше видима с невъоръжено око за рекордните 18 месеца през 1996-1997 г.</p>
+                        </div>
+                    </div>
+                    <div class="comet-item">
+                        <img src="/placeholder.svg?height=100&width=200" alt="Комета 67P/Чурюмов-Герасименко">
+                        <div class="comet-item-info">
+                            <h4>67P/Чурюмов-Герасименко</h4>
+                            <p>Комета, която беше изследвана от космическия апарат Розета и спускаемия модул Филе през 2014-2016 г. - първото успешно кацане на комета.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Нептун -->
+            <div id="neptune-detail" class="planet-detail">
+                <div class="planet-header">
+                    <div class="planet-visualization">
+                        <img src="../solar/images/neptune.png" alt="Нептун" class="planet-image">
+                        <div class="planet-3d" id="neptune-3d"></div>
+                    </div>
+                    <div class="planet-basic-info">
+                        <h3>Нептун</h3>
+                        <div class="planet-facts">
+                            <div class="fact">
+                                <span class="fact-label">Тип:</span>
+                                <span class="fact-value">Леден гигант</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Диаметър:</span>
+                                <span class="fact-value">49,528 км</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Маса:</span>
+                                <span class="fact-value">1.024 × 10^26 кг</span>
+                            </div>
+                            <div class="fact">
+                                <span class="fact-label">Разстояние от Слънцето:</span>
+                                <span class="fact-value">4.497 милиарда км</span>
+                            </div>
+                        </div>
+                        <a href="../solar/neptun/index.html" class="learn-more-btn btn btn-primary">
+                            <span class="btn-icon"><i class="fas fa-external-link-alt"></i></span>
+                            <span class="btn-text">Научи повече за Нептун</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="planet-tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="neptune-overview">Общ преглед</button>
+                        <button class="tab-btn" data-tab="neptune-structure">Структура</button>
+                        <button class="tab-btn" data-tab="neptune-atmosphere">Атмосфера</button>
+                        <button class="tab-btn" data-tab="neptune-rings">Пръстени</button>
+                        <button class="tab-btn" data-tab="neptune-moons">Спътници</button>
+                        <button class="tab-btn" data-tab="neptune-facts">Интересни факти</button>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div id="neptune-overview" class="tab-pane active">
+                            <h4>Общ преглед на Нептун</h4>
+                            <p>Нептун е осмата и най-отдалечена планета от Слънцето. Той е вторият леден гигант и е известен със своите силни ветрове и тъмни бури, включително Голямото тъмно петно.</p>
+                        </div>
+                        
+                        <div id="neptune-structure" class="tab-pane">
+                            <h4>Структура на Нептун</h4>
+                            <p>Нептун е леден гигант със следната структура:</p>
+                            <ul>
+                                <li><strong>Ядро:</strong> Малко, скалисто ядро с маса около 1.2 пъти по-голяма от Земята</li>
+                                <li><strong>Мантия:</strong> Съставена от вода, амоняк и метанов лед под високо налягане</li>
+                                <li><strong>Атмосфера:</strong> Дебел слой от водород, хелий и метан</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="neptune-atmosphere" class="tab-pane">
+                            <h4>Атмосфера на Нептун</h4>
+                            <p>Атмосферата на Нептун се състои от:</p>
+                            <ul>
+                                <li>80% водород</li>
+                                <li>19% хелий</li>
+                                <li>1% метан (придава синия цвят)</li>
+                            </ul>
+                            <p>Нептун има най-силните ветрове в Слънчевата система, достигащи скорости до 2,100 км/ч. В атмосферата се наблюдават тъмни петна, подобни на Голямото червено петно на Юпитер.</p>
+                        </div>
+                        
+                        <div id="neptune-rings" class="tab-pane">
+                            <h4>Пръстени на Нептун</h4>
+                            <p>Нептун има пет основни пръстена:</p>
+                            <ul>
+                                <li>Открити през 1984 година</li>
+                                <li>Много тънки и тъмни</li>
+                                <li>Съставени от ледени частици и органични съединения</li>
+                                <li>Имат необичайни дъговидни сегменти</li>
+                            </ul>
+                        </div>
+                        
+                        <div id="neptune-moons" class="tab-pane">
+                            <h4>Спътници на Нептун</h4>
+                            <p>Нептун има 14 известни спътника. Най-забележителните са:</p>
+                            <ul>
+                                <li><strong>Тритон:</strong> Най-големият спътник, движи се в обратна посока</li>
+                                <li><strong>Нереида:</strong> Има силно елиптична орбита</li>
+                                <li><strong>Наяда:</strong> Най-близкият спътник до Нептун</li>
+                            </ul>
+                            <p>Тритон е уникален с това, че е единственият голям спътник в Слънчевата система с ретроградна орбита, което предполага, че е заловен обект от пояса на Кайпер.</p>
+                        </div>
+                        
+                        <div id="neptune-facts" class="tab-pane">
+                            <h4>Интересни факти за Нептун</h4>
+                            <div class="facts-grid">
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-wind"></i></div>
+                                    <h5>Силни ветрове</h5>
+                                    <p>Най-бързите ветрове в Слънчевата система, достигащи 2,100 км/ч.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-calculator"></i></div>
+                                    <h5>Математическо откритие</h5>
+                                    <p>Открит чрез математически изчисления преди да бъде наблюдаван.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-moon"></i></div>
+                                    <h5>Уникален спътник</h5>
+                                    <p>Тритон е единственият голям спътник с обратна орбита.</p>
+                                </div>
+                                <div class="fact-card">
+                                    <div class="fact-icon"><i class="fas fa-snowflake"></i></div>
+                                    <h5>Студени облаци</h5>
+                                    <p>Има облаци от замръзнал метан на височина 50-100 км над повърхността.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция за аномалии -->
+    <section id="anomalies" class="anomalies-section">
+        <div class="section-header">
+            <h2 class="section-title">Космически аномалии</h2>
+            <p class="section-subtitle">Загадъчни явления и необяснени феномени в нашата Слънчева система</p>
+        </div>
+        
+        <div class="anomalies-grid">
+            <div class="anomaly-card">
+                <div class="anomaly-image">
+                    <img src="https://th.bing.com/th/id/R.fa1100fffd3d7e256072c1d87b7bef7e?rik=r0Ga9xIFjtoRtA&pid=ImgRaw&r=0" alt="Хексагонът на Сатурн">
+                </div>
+                <div class="anomaly-info">
+                    <h3>Хексагонът на Сатурн</h3>
+                    <p>Странна шестоъгълна буря на северния полюс на Сатурн, която е стабилна от десетилетия. Всяка страна на хексагона е по-голяма от диаметъра на Земята.</p>
+                    <a href="https://en.wikipedia.org/wiki/Saturn%27s_hexagon" target="_blank" class="btn btn-small anomaly-details-btn">Научи повече</a>
+                </div>
+            </div>
+            
+            <div class="anomaly-card">
+                <div class="anomaly-image">
+                    <img src="https://th.bing.com/th/id/OIP.Zz6Ob3xcYcgob7XM7ehyUwHaDt?rs=1&pid=ImgDetMain" alt="Монолитът на Фобос">
+                </div>
+                <div class="anomaly-info">
+                    <h3>Монолитът на Фобос</h3>
+                    <p>Странна скална формация на повърхността на Фобос, спътника на Марс, която изглежда като изправен камък с височина около 90 метра.</p>
+                    <a href="https://en.wikipedia.org/wiki/Phobos_monolith" target="_blank" class="btn btn-small anomaly-details-btn">Научи повече</a>
+                </div>
+            </div>
+            
+            <div class="anomaly-card">
+                <div class="anomaly-image">
+                    <img src="https://th.bing.com/th/id/R.9a1b4576849e60fdde9d7192ad169fb5?rik=6FHm1VXjUSVAtw&pid=ImgRaw&r=0" alt="Пионерска аномалия">
+                </div>
+                <div class="anomaly-info">
+                    <h3>Пионерска аномалия</h3>
+                    <p>Необяснимо забавяне на космическите апарати Пионер 10 и 11, което не може да бъде обяснено с известните физични закони и сили.</p>
+                    <a href="https://en.wikipedia.org/wiki/Pioneer_anomaly" target="_blank" class="btn btn-small anomaly-details-btn">Научи повече</a>
+                </div>
+            </div>
+            
+            <div class="anomaly-card">
+                <div class="anomaly-image">
+                    <img src="https://cdn.images.express.co.uk/img/dynamic/151/590x/Alien-life-NASA-news-Ceres-organic-compounds-extraterrestrial-carbon-water-974257.jpg?r=1533712356539" alt="Светлинни проблясъци на Церера">
+                </div>
+                <div class="anomaly-info">
+                    <h3>Светлинни проблясъци на Церера</h3>
+                    <p>Ярки светлинни петна в кратера Окатор на джуджетата планета Церера, чийто произход все още не е напълно изяснен.</p>
+                    <a href="https://en.wikipedia.org/wiki/Bright_spots_on_Ceres" target="_blank" class="btn btn-small anomaly-details-btn">Научи повече</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция за спътници -->
+    <section id="satellites" class="moons-section">
+        <div class="section-header">
+            <h2 class="section-title">Спътници в Слънчевата система</h2>
+            <p class="section-subtitle">Открийте най-интересните естествени спътници на планетите</p>
+        </div>
+        
+        <div class="moons-grid">
+            <!-- Луна -->
+            <div class="moon-card featured">
+                <div class="moon-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/1200px-FullMoon2010.jpg" alt="Луната">
+            </div>
+                <div class="moon-info">
+                    <h3>Луна</h3>
+                    <span class="moon-parent">Земя</span>
+                    <p class="moon-description">Единственият естествен спътник на Земята и най-близкото до нас небесно тяло. Оказва значително влияние върху приливите и отливите.</p>
+                   
+                            </div>
+                        </div>
+
+            <!-- Йо -->
+            <div class="moon-card">
+                <div class="moon-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Io_highest_resolution_true_color.jpg" alt="Йо">
+                    </div>
+                <div class="moon-info">
+                    <h3>Йо</h3>
+                    <span class="moon-parent">Юпитер</span>
+                    <p class="moon-description">Най-вулканично активното тяло в Слънчевата система с над 400 активни вулкана.</p>
+                   
+                            </div>
+                        </div>
+
+            <!-- Европа -->
+            <div class="moon-card">
+                <div class="moon-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Europa-moon-with-margins.jpg" alt="Европа">
+                    </div>
+                <div class="moon-info">
+                    <h3>Европа</h3>
+                    <span class="moon-parent">Юпитер</span>
+                    <p class="moon-description">Леден спътник с подповърхностен океан, който може да съдържа два пъти повече вода от земните океани.</p>
+                   
+                            </div>
+                        </div>
+
+            <!-- Титан -->
+            <div class="moon-card featured">
+                <div class="moon-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Titan_in_true_color.jpg" alt="Титан">
+                    </div>
+                <div class="moon-info">
+                    <h3>Титан</h3>
+                    <span class="moon-parent">Сатурн</span>
+                    <p class="moon-description">Единственият спътник със плътна атмосфера и единственото тяло освен Земята с течни езера на повърхността.</p>
+                   
+                            </div>
+                        </div>
+
+            <!-- Енцелад -->
+            <div class="moon-card">
+                <div class="moon-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/PIA17202_-_Approaching_Enceladus.jpg" alt="Енцелад">
+                    </div>
+                <div class="moon-info">
+                    <h3>Енцелад</h3>
+                    <span class="moon-parent">Сатурн</span>
+                    <p class="moon-description">Леден свят с гейзери, изхвърлящи водни пари от подповърхностен океан през пукнатини в ледената кора.</p>
+                   
+                </div>
+            </div>
+
+            <!-- Тритон -->
+            <div class="moon-card">
+                <div class="moon-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Triton_moon_mosaic_Voyager_2_%28large%29.jpg" alt="Тритон">
+                </div>
+                <div class="moon-info">
+                    <h3>Тритон</h3>
+                    <span class="moon-parent">Нептун</span>
+                    <p class="moon-description">Най-големият спътник на Нептун, известен със своите криовулкани, изхвърлящи течен азот.</p>  
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция за джуджети планети -->
+    <section id="dwarf-planets" class="dwarf-planets-section">
+        <div class="section-header">
+            <h2 class="section-title">Джуджети планети</h2>
+            <p class="section-subtitle">Открийте малките светове на границата на Слънчевата система</p>
+        </div>
+
+        <div class="dwarf-planets-grid">
+            <!-- Церера -->
+            <div class="dwarf-planet-card">
+                <div class="dwarf-planet-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Ceres_-_RC3_-_Haulani_Crater_%2822381131691%29_%28cropped%29.jpg" alt="Церера">
+                </div>
+                <div class="dwarf-planet-info">
+                    <h3>Церера</h3>
+                    <p class="dwarf-planet-description">Най-голямата джуджета планета в астероидния пояс и единствената в вътрешната Слънчева система.</p>
+                    <div class="dwarf-planet-facts">
+                        <span>Диаметър: 940 км</span>
+                        <span>Разстояние от Слънцето: 2.77 АЕ</span>
+                    </div>
+                    <a href="C:\Users\nickk\OneDrive\Desktop\kikoshefa\kosmos\solar\dwarf-planets\index.html" target="_blank" class="btn btn-small">Научи повече</a>
+                </div>
+            </div>
+
+            <!-- Плутон -->
+            <div class="dwarf-planet-card">
+                <div class="dwarf-planet-image">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Pluto_in_True_Color_-_High-Res.jpg" alt="Плутон">
+                </div>
+                <div class="dwarf-planet-info">
+                    <h3>Плутон</h3>
+                    <p class="dwarf-planet-description">Най-известната джуджета планета, бивша деветата планета на Слънчевата система до 2006 г.</p>
+                    <div class="dwarf-planet-facts">
+                        <span>Диаметър: 2377 км</span>
+                        <span>Разстояние от Слънцето: 39.5 АЕ</span>
+                    </div>
+                    <a href="C:\Users\nickk\OneDrive\Desktop\kikoshefa\kosmos\solar\dwarf-planets\index.html" target="_blank" class="btn btn-small">Научи повече</a>
+                </div>
+            </div>
+
+            
+            <div class="dwarf-planet-card">
+                <div class="dwarf-planet-image">
+                    <img src="https://th.bing.com/th/id/R.a6248a0be28cfba36da50b9960836461?rik=AVRn3oYRd0mMAg&riu=http%3a%2f%2fastro.km.ua%2fimg%2farticles%2ffullsize%2feris.jpg&ehk=o0MH4kb6OJM5vN20UND0R1m9btcziMvB8wWehGbru2o%3d&risl=&pid=ImgRaw&r=0" alt="Ерида">
+                </div>
+                <div class="dwarf-planet-info">
+                    <h3>Ерида</h3>
+                    <p class="dwarf-planet-description">Най-масивната известна джуджета планета, чието откриване доведе до предефиниране на понятието "планета".</p>
+                    <div class="dwarf-planet-facts">
+                        <span>Диаметър: 2326 км</span>
+                        <span>Разстояние от Слънцето: 67.7 АЕ</span>
+                    </div>
+                    <a href="C:\Users\nickk\OneDrive\Desktop\kikoshefa\kosmos\solar\dwarf-planets\index.html" target="_blank" class="btn btn-small">Научи повече</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция за астероиди -->
+    <section id="asteroids" class="asteroids-section">
+        <div class="section-header">
+            <h2 class="section-title">Астероиден пояс</h2>
+            <p class="section-subtitle">Изследвай скалните обекти между Марс и Юпитер</p>
+        </div>
+
+        <div class="asteroids-visualization">
+            <canvas id="asteroidBeltCanvas"></canvas>
+        </div>
+
+        <div class="asteroids-info">
+            <div class="info-column">
+                <h3>Какво представлява астероидният пояс?</h3>
+                <p>Астероидният пояс е област между орбитите на Марс и Юпитер, където се намират множество скални тела с различни размери.</p>
+                
+                <h4>Характеристики</h4>
+                <ul>
+                    <li>Съдържа милиони астероиди</li>
+                    <li>Разположен е на 2.2 до 3.2 АЕ от Слънцето</li>
+                    <li>Общата маса е около 4% от масата на Луната</li>
+                </ul>
+            </div>
+
+            <div class="info-column">
+                <h3>Известни астероиди</h3>
+                <div class="asteroid-list">
+                    <div class="asteroid-item">
+                        <img src="https://th.bing.com/th/id/R.58340d1c17265a9d1757b7d140762ea8?rik=%2boQJ4BUUFQeCdw&pid=ImgRaw&r=0" alt="Веста">
+                        <div class="asteroid-item-info">
+                            <h4>4 Веста</h4>
+                            <p>Вторият по големина астероид с диаметър от 525 км. Има частично разтопено ядро и е източник на много метеорити на Земята.</p>
+                        </div>
+                    </div>
+
+                    <div class="asteroid-item">
+                        <img src="https://th.bing.com/th/id/R.ada75ab81f1eeadc16e79854e5b16527?rik=E0JnWC8yNKtwkQ&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fd%2fd4%2fPotw1749a_Pallas_crop.png&ehk=oZMjRq0n9dsjKp23oMmI6SedVZIwL0VVmifCf%2fQOdwc%3d&risl=&pid=ImgRaw&r=0" alt="Палада">
+                        <div class="asteroid-item-info">
+                            <h4>2 Палада</h4>
+                            <p>Третият по големина астероид с диаметър от 512 км. Има силно наклонена орбита спрямо еклиптиката.</p>
+                        </div>
+                    </div>
+
+                    <div class="asteroid-item">
+                        <img src="https://th.bing.com/th/id/OIP.sibPNhLUyBI6quAnxp483AHaEJ?rs=1&pid=ImgDetMain" alt="Юнона">
+                        <div class="asteroid-item-info">
+                            <h4>3 Юнона</h4>
+                            <p>Един от най-големите астероиди от S-тип с диаметър от 234 км. Открит е през 1804 г. от Карл Хардинг.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Секция за комети -->
+    <section id="comets" class="comets-section">
+        <div class="section-header">
+            <h2 class="section-title">Комети</h2>
+            <p class="section-subtitle">Ледени тела, които създават впечатляващи опашки при приближаване до Слънцето</p>
+        </div>
+
+        <div class="comets-container">
+            <div class="comet-info-grid">
+                <div class="comet-basics">
+                    <h3>Какво представляват кометите?</h3>
+                    <p>Кометите са ледени тела в Слънчевата система, съставени предимно от замръзнали газове, прах и скални частици. Когато се приближат до Слънцето, ледът се изпарява и създава характерната опашка.</p>
+                    
+                    <div class="comet-structure">
+                        <h4>Структура на кометите</h4>
+                        <ul>
+                            <li><strong>Ядро:</strong> Замръзнала смес от лед, прах и скали</li>
+                            <li><strong>Кома:</strong> Газова обвивка около ядрото</li>
+                            <li><strong>Прашна опашка:</strong> Следа от прахови частици</li>
+                            <li><strong>Йонна опашка:</strong> Светеща опашка от йонизирани газове</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="comet-animation">
+                    <canvas id="cometCanvas"></canvas>
+                    <div class="animation-controls">
+                        <button id="playPauseBtn" class="btn">Старт/Пауза</button>
+                        <button id="resetBtn" class="btn">Рестартиране</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comets-info">
+                <h3>Известни комети</h3>
+                <div class="comet-list">
+                    <div class="comet-item">
+                        <img src="https://lider.bg/file/2022/04/halleys-comet-by-nasa_resize_md.jpg" alt="Комета Халей">
+                        <div class="comet-item-info">
+                            <h4>Халеева Комета</h4>
+                            <p>Най-известната периодична комета, видима от Земята на всеки 75-76 години. Последно преминаване: 1986 г. Следващо: 2061 г.</p>
+                            <ul class="comet-facts">
+                                <li>Период на обикаляне: 76 години</li>
+                                <li>Диаметър на ядрото: 11 км</li>
+                                <li>Скорост: до 70 км/с</li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+
+                    <div class="comet-item">
+                        <img src="https://th.bing.com/th/id/OIP.Hd-4yafdImZZ0E7vetW_uAHaHa?rs=1&pid=ImgDetMain" alt="Комета Хейл-Боп">
+                        <div class="comet-item-info">
+                            <h4>Комета Хейл-Боп</h4>
+                            <p>Една от най-ярките комети на 20-ти век, видима с невъоръжено око за рекордните 18 месеца през 1996-1997 г.</p>
+                            <ul class="comet-facts">
+                                <li>Период на обикаляне: 2533 години</li>
+                                <li>Диаметър на ядрото: 60 км</li>
+                                <li>Максимална яркост: -1.0 магнитуд</li>
+                            </ul>
+                           
+                        </div>
+                    </div>
+
+                    <div class="comet-item">
+                        <img src="https://sun9-79.userapi.com/impg/Bg5Qni2bDzJmwFVevNjgo83OVJZbz9Q8KuZHeQ/H_0DgNeYRBs.jpg?size=1280x720&quality=95&sign=d39174f3dbf44360e6a61d9efda0aeb6&type=album" alt="67P/Чурюмов-Герасименко">
+                        <div class="comet-item-info">
+                            <h4>67P/Чурюмов-Герасименко</h4>
+                            <p>Първата комета, изследвана отблизо от космически апарат (Розета) и първата, на която е кацнал спускаем модул (Филе).</p>
+                            <ul class="comet-facts">
+                                <li>Период на обикаляне: 6.45 години</li>
+                                <li>Размери: 4.1 × 3.3 × 1.8 км</li>
+                                <li>Открита: 1969 г.</li>
+                            </ul>
+                           
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comet-facts-section">
+                    <h3>Интересни факти</h3>
+                    <div class="facts-grid">
+                        <div class="fact-card">
+                            <i class="fas fa-meteor"></i>
+                            <h4>Произход</h4>
+                            <p>Повечето комети идват от Облака на Оорт или Пояса на Кайпер</p>
+                        </div>
+                        <div class="fact-card">
+                            <i class="fas fa-temperature-low"></i>
+                            <h4>Състав</h4>
+                            <p>Наричат ги "мръсни снежни топки" заради смесицата от лед и прах</p>
+                        </div>
+                        <div class="fact-card">
+                            <i class="fas fa-history"></i>
+                            <h4>История</h4>
+                            <p>Древните култури често са свързвали кометите с важни събития</p>
+                        </div>
+                        <div class="fact-card">
+                            <i class="fas fa-ruler"></i>
+                            <h4>Размери</h4>
+                            <p>Опашките на кометите могат да достигнат милиони километри дължина</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футър -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-icon"><i class="fas fa-rocket"></i></span>
+                <span class="logo-text">КОСМОС<span class="accent">ЕКСПЛОРЪР</span></span>
+            </div>
+            <div class="footer-info">
+                <p>Интерактивно пътешествие през Слънчевата система</p>
+                <p>Всички изображения и данни са с образователна цел</p>
+                
+            </div>
+        </div>
+    </footer>
+
+    <!-- Модален прозорец за детайли за аномалиите -->
+    <div id="anomalyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <!-- Съдържанието ще се зарежда динамично -->
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript файлове -->
+    <script src="parallax.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
